@@ -39,7 +39,7 @@ $dsr - performs a SQL SELECT query. will return an object conatining all the fie
 $dsl - performs a SQL SELECT query. will return a list of object containing all the field of the rows that were found.
 $dc  - will return all the Data that is used by the Current module.
 $dcl - will return all the Data that is used by  the Current module as a List.
-$dsa - will make the variable Safe to use in queries.
+$de - will make the variable safe to use in queries by Escaping the data.
 
  Miscellaneous SJS:
  
