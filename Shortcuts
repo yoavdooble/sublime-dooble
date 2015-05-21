@@ -34,6 +34,7 @@ $dql - performs a Data Query List request. will return a list containing all the
 $ds  - performs a SQL SELECT query. will return a variable with only one field (the first, by default) of the first row found.
 $dsu - performs a SQL UPDATE query.
 $dsd - performs a SQL DELETE query. IT HAS TO HAVE A WHERE STATMENT.
+$dsu - performs a SQL INSERT query.
 $dsr - performs a SQL SELECT query. will return an object conatining all the fields of the first row found.
 $dsl - performs a SQL SELECT query. will return a list of object containing all the field of the rows that were found.
 $dc  - will return all the Data that is used by the Current module.
