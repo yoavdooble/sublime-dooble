@@ -3,32 +3,33 @@
 		
         "completions":
         [		
-                { "trigger": "\\$sj\tjson", "contents": "\\$server.json(${1:object});" },
-                { "trigger": "\\$sgg\tGetGlobal", "contents": "var global = \\$server.global('${1:object}');" },
+                { "trigger": "\\$gfy\tTest", "contents": "Go Fuck Yourself,it's working" },
+                { "trigger": "\\$sj\tObjToJSON", "contents": "\\$server.json(${1:object})" },
+                { "trigger": "\\$sgg\tGetGlobal", "contents": "\\$server.global('${1:object}')" },
                 { "trigger": "\\$ssg\tSetGlobal", "contents": "\\$server.global('${1:global}',${2:value});" },
                 { "trigger": "\\$ssc\tSetCookie", "contents": "\\$server.cookie('${1:CookieName}',${2:value});" },
-                { "trigger": "\\$sgc\tGetCookie", "contents": "var cookie = \\$server.cookie('${1:CookieName}');" },
+                { "trigger": "\\$sgc\tGetCookie", "contents": "\\$server.cookie('${1:CookieName}')" },
                 { "trigger": "\\$sss\tSetSession", "contents": "\\$server.session('${1:SessionName}',${2:value});" },
-                { "trigger": "\\$sgs\tGetSession", "contents": "var session = \\$server.session('${1:SessionName}');" },
-                { "trigger": "\\$sq\tQueryString", "contents": "\\$server.qs('${1:SessionName}');" },
-                { "trigger": "\\$sp\tParameter", "contents": "\\$server.prm('${1:ParameterName}');" },
-                { "trigger": "\\$sf\tform", "contents": "var form = \\$server.form();" },
+                { "trigger": "\\$sgs\tGetSession", "contents": "\\$server.session('${1:SessionName}')" },
+                { "trigger": "\\$sq\tQueryString", "contents": "\\$server.qs('${1:SessionName}')" },
+                { "trigger": "\\$sp\tParameter", "contents": "\\$server.prm('${1:ParameterName}')" },
+                { "trigger": "\\$sf\tGetForm", "contents": "\\$server.form()" },
                 { "trigger": "\\$ssm\tSendMail", "contents": "\\$server.sendMail({\n\tfrom: ('no_reply@' + domain),\n\tto: ${1:eMailAddress},\n\tfromName: site.pagetitle,\n\tsubject: ${2:Title},\n\ttemplate: '${3:templateName}.html'\n});" },
-                { "trigger": "\\$sa\tNewAction", "contents": "\\$server.action('${1:actionName}',function(db){\n${2:code}\n\tdb.save();\n});" },
-                { "trigger": "\\$sba\tBeforeAction", "contents": "\\$server.beforeAction('${1:actionName}',function(db){\n${2:code}\n\tdb.save();\n});" },
-                { "trigger": "\\$saa\tAfterAction", "contents": "\\$server.afterAction('${1:actionName}',function(db){\n${2:code}\n\tdb.save();\n});" },
+                { "trigger": "\\$sa\tNewAction", "contents": "\\$server.action('${1:actionName}',function(db){\n\t${2:code}\n\tdb.save();\n});" },
+                { "trigger": "\\$sba\tBeforeAction", "contents": "\\$server.beforeAction('${1:actionName}',function(db){\n\t${2:code}\n});" },
+                { "trigger": "\\$saa\tAfterAction", "contents": "\\$server.afterAction('${1:actionName}',function(db){\n\t${2:code}\n});" },
                 { "trigger": "\\$surl\tGetUrl", "contents": "\\$server.url(true)"},
                 { "trigger": "\\$sdyc\tDecryptValue", "contents": "\\$server.decrypt(${1:value})"},
                 { "trigger": "\\$senc\tEncryptValue", "contents": "\\$server.encrypt (${1:value})"},
-                { "trigger": "\\$sr\tRedirect", "contents": "\\$server.redirect('/${1:url}')"},                
+                { "trigger": "\\$sr\tRedirect", "contents": "\\$server.redirect('${1:url}')"},                
 
                 { "trigger": "\\$sget\tHTTPGet", "contents": "\\$service.get(${1:url})"},
                 { "trigger": "\\$spost\tHTTPPost", "contents": "\\$service.post (${1:url}, ${2:postData}, ${3:headers})"},
                 { "trigger": "\\$sexist\tSiteExists", "contents": "\\$service.exists(${1:url})"},
 
-                { "trigger": "\\$dq\tDataQuery", "contents": "var ${1:variableName} = \\$data.query(\"SELECT ${2:TableName}.${3:Field} WHERE ID =\"+ ${4:Variable});" },
-                { "trigger": "\\$dqr\tDataQueryRow", "contents": "var ${1:variableName} = \\$data.queryRow(\"SELECT ${2:TableName}.* WHERE ID =\"+ ${3:Variable});" },
-                { "trigger": "\\$dql\tDataQueryList", "contents": "var ${1:variableName} = \\$data.queryList(\"SELECT ${2:TableName}.* WHERE Name =\"+ ${3:Variable});" },
+                { "trigger": "\\$dq\tDataQuery", "contents": "\\$data.query(\"SELECT ${1:TableName}.${2:Field} WHERE ID =\"+ ${3:Variable});" },
+                { "trigger": "\\$dqr\tDataQueryRow", "contents": "\\$data.queryRow(\"SELECT ${1:TableName}.* WHERE ID =\"+ ${2:Variable});" },
+                { "trigger": "\\$dql\tDataQueryList", "contents": "\\$data.queryList(\"SELECT ${1:TableName}.* WHERE Name =\"+ ${2:Variable});" },
                 { "trigger": "\\$ds\tSQL", "contents": "\\$data.sql(\"SELECT ${1:Field} FROM ${2:TableName} WHERE ID =\"+ ${3:Variable});" },
                 { "trigger": "\\$dsu\tSQLUpdate", "contents": "\\$data.sql(\"UPDATE ${1:TableName} SET ${2:Field} = '${3:Value}', ${4:Field} = '${5:Value}' WHERE ID =\"+ ${6:Variable});" },
                 { "trigger": "\\$dsd\tSQLDelete", "contents": "\\$data.sql(\"DELETE ${1:TableName} WHERE ID =\"+ ${2:Variable});" },
@@ -38,14 +39,14 @@
                 { "trigger": "\\$dcl\tDataCurrentList", "contents": "var currentList = \\$data.currentList()"},
                 { "trigger": "\\$dsa\tDataSafe", "contents": "\\$data.safe(${1:Variable})"},
 
-                { "trigger": "\\$site\tvar site", "contents": "var site = \\$data.queryRow('SELECT Sites.*');"},
-                { "trigger": "\\$tms\tThrow Mistake", "contents": "throw 'missed steak';" },
+                { "trigger": "\\$site\tSiteDetails", "contents": "var site = \\$data.queryRow('SELECT Sites.*');"},
+                { "trigger": "\\$tms\tThrow Mistake", "contents": "throw '${1:missed steak}';" },
                 { "trigger": "\\$tsj\tThrow JSON", "contents": "throw \\$server.json(${1:object});" },
-                { "trigger": "\\$cb\tCommentBlock", "contents": "/* \n${1:code}\n*/" },
+                { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n${1:Comment}\n*/" },
 
 
                 { "trigger": "@bb\tSJSBlock", "contents": "@{\n\t${1:code}\n''}@" },
-                { "trigger": "@bil\tSJSInLine", "contents": "@{\t${1:code}}@" },
+                { "trigger": "@bil\tSJSInLine", "contents": "@{${1:code}}@" },
                 { "trigger": "@form\tForm", "contents": "[[\\$Form]]\n\t${1:form}\n[[\\$EndForm]]" },
                 { "trigger": "@con\tConfig", "contents": "[[Config ds:where=\"${1:Field} ='[[${2:Parameter}]]'\" ]]" },
                 { "trigger": "@if\tBEIf", "contents": "@if(${1:Expression})\n\t${2:code}\n@endif" },
@@ -65,9 +66,18 @@
                 { "trigger": "@uidate\tUIDatePicker", "contents": "[[ui/datepicker  field='${1:Field}' format='${2:yyyy/MM/dd}']]" },
                 { "trigger": "@uisubmit\tUISubmit", "contents": "[[ui/submit  action='${1:save}' value='${2:שלח}' class='${3:class}']]" },
                 { "trigger": "@uihidden\tUIHidden", "contents": "[[ui/hidden field='${1:Field}' value='${2:value}']]" },
+
                 
 
                 { "trigger": "@deb\tDebugger", "contents": "debugger;" },
-                { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" }
+                { "trigger": "@msg\tPopUp", "contents": "popMsg('${1:Messege}','${2:Title}');" },
+                { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" },
+                { "trigger": "@cb\tCommentBlockHTML", "contents": "--[\n${1:Comment}\n]--" },
+
+
+                { "trigger": "#apiform\tAPIForm", "contents": "@{\n\tvar result = { success: true, exception: null };\n\ttry {\n\t\t\tvar qs ={\n\t\t\t\taction: \\$server.qs('action')\n\t\t\t};\n\t\tif(!qs.action)\n\t\t\tthrow 'action required.';\n\t\tqs.action = qs.action.toLowerCase();\n\t\tvar form = (\\$server.requestBody()) ?  JSON.parse(\\$server.requestBody()) : {};\n\n\t\tswitch(qs.action) {\n\t\t\tcase '\\${1:action}':\n\t\t\t\t\\${2:code};\n\t\t\t\tbreak;\n\t\t}\n\t} catch(e) {\n\t\tresult.success = false;\n\t\tresult.exception = e.toString();\n\t}\n\t\\$server.responseType('application/json');\n\t\\$server.json(result);\n}@" },
+                { "trigger": "#handler\tHandlerJSON", "contents": "var ${1:name}Handler = {\n\t${2:get}: function () {\n\t\t${3:return false;}\n\t},\n\t${4:set}: function () {\n\t\t${5:return true;}\n\t}\n};" },
+                { "trigger": "#sql\tSQLBuilder", "contents": "\nvar query = 'SELECT %s FROM ${1:TableName} t\\n\\\n\t\t\t%s \\n\\\n\t\t\tWHERE %s \n\\n\t\t\tORDER BY %s';\nvar select = ['t.ID'\n\t\t\t\t,'t.${2:Field} as ${3:FieldName}'];\nvar orderby = ['ID'];\nvar joins = ['INNER JOIN ${4:TableName} t2 ON t2.ID = t.ID'];\nvar where = ['${5:Field} = ${6:Field}','${7:Field} = ${8:Field}'];\nvar ${9:variableName} = \\$data.sqlList(_.str.sprintf(query,select.join(','),joins.join(' \\n '),where.join(' AND '), orderby.join(',')));\n" }
+                
         ]
 }
