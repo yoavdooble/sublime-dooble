@@ -43,7 +43,7 @@
                 { "trigger": "\\$site\tSiteDetails", "contents": "var site = \\$data.queryRow('SELECT Sites.*');"},
                 { "trigger": "\\$tms\tThrow Mistake", "contents": "throw '${1:missed steak}';" },
                 { "trigger": "\\$tsj\tThrow JSON", "contents": "throw \\$server.json(${1:object});" },
-                { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n${1:Comment}\n*/" },
+                { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" },
 
 
                 { "trigger": "@bb\tSJSBlock", "contents": "@{\n\t${1:code}\n''}@" },
@@ -73,7 +73,7 @@
                 { "trigger": "@deb\tDebugger", "contents": "debugger;" },
                 { "trigger": "@msg\tPopUp", "contents": "popMsg('${1:Messege}','${2:Title}');" },
                 { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" },
-                { "trigger": "@cb\tCommentBlockHTML", "contents": "--[\n${1:Comment}\n]--" },
+                { "trigger": "@cb\tCommentBlockHTML", "contents": "--[\n\t${1:Comment}\n]--" },
 
 
                 { "trigger": "#apiform\tAPIForm", "contents": "@{\n\tvar result = { success: true, exception: null };\n\ttry {\n\t\t\tvar qs ={\n\t\t\t\taction: \\$server.qs('action')\n\t\t\t};\n\t\tif(!qs.action)\n\t\t\tthrow 'action required.';\n\t\tqs.action = qs.action.toLowerCase();\n\t\tvar form = (\\$server.requestBody()) ?  JSON.parse(\\$server.requestBody()) : {};\n\n\t\tswitch(qs.action) {\n\t\t\tcase '\\${1:action}':\n\t\t\t\t\\${2:code};\n\t\t\t\tbreak;\n\t\t}\n\t} catch(e) {\n\t\tresult.success = false;\n\t\tresult.exception = e.toString();\n\t}\n\t\\$server.responseType('application/json');\n\t\\$server.json(result);\n}@" },
