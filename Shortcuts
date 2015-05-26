@@ -77,7 +77,6 @@ $cb   - will create a Comment Block JS (can b used in any SJS block of '.js' Fil
 Miscellaneous HTML/JS:
 
 @deb - will pop up the browser debugger Debugger. will only work on Front-End '.js' files.
-@msg - will create a Pop Up message. requires bootstrap and the popMsg function.
 @cl  - will write the given value into the Console Log. doesn't work on SJS files that are used by ajax or services.
 @cb  - will create a SJS Comment Block  on a HTML file. this comment will not be visible to the user.
 

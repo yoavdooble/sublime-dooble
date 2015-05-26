@@ -71,7 +71,6 @@
                 
 
                 { "trigger": "@deb\tDebugger", "contents": "debugger;" },
-                { "trigger": "@msg\tPopUp", "contents": "popMsg('${1:Messege}','${2:Title}');" },
                 { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" },
                 { "trigger": "@cb\tCommentBlockHTML", "contents": "--[\n\t${1:Comment}\n]--" },
 
