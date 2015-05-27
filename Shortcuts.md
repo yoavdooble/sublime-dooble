@@ -20,11 +20,15 @@ $sdyc - Decrypt a Value.
 $senc - Encrypt a Value.
 $sr   - Redirect the user to a new url.
 
-Service Functions:
+ Service Functions:
 
 $sget   - send a HTTP Get request.
 $spost  - send a HTTP Post request.
 $sexist - checks if a Site Exists.
+
+ Util Functions:
+
+$uqs - Sets a value to the Query String on the given url
 
  Data functions:
  
