@@ -3,7 +3,6 @@
 		
         "completions":
         [		
-                { "trigger": "\\$gfy\tTest", "contents": "Go Fuck Yourself, it's working" },
                 { "trigger": "\\$sj\tObjToJSON", "contents": "\\$server.json(${1:object})" },
                 { "trigger": "\\$sgg\tGetGlobal", "contents": "\\$server.global('${1:object}')" },
                 { "trigger": "\\$ssg\tSetGlobal", "contents": "\\$server.global('${1:global}',${2:value});" },
