@@ -27,6 +27,8 @@
                 { "trigger": "\\$spost\tHTTPPost", "contents": "\\$service.post (${1:url}, ${2:postData}, ${3:headers})"},
                 { "trigger": "\\$sexist\tSiteExists", "contents": "\\$service.exists(${1:url})"},
 
+                { "trigger": "\\$uqs\tSetQueryString", "contents": "\\$util.setQS(${1:url},${2:key},${3:value})"},
+
                 { "trigger": "\\$dq\tDataQuery", "contents": "\\$data.query(\"SELECT ${1:TableName}.${2:Field} WHERE ID =\"+ ${3:Variable});" },
                 { "trigger": "\\$dqr\tDataQueryRow", "contents": "\\$data.queryRow(\"SELECT ${1:TableName}.* WHERE ID =\"+ ${2:Variable});" },
                 { "trigger": "\\$dql\tDataQueryList", "contents": "\\$data.queryList(\"SELECT ${1:TableName}.* WHERE Name =\"+ ${2:Variable});" },
@@ -46,7 +48,7 @@
                 { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" },
 
 
-                { "trigger": "@bb\tSJSBlock", "contents": "@{\n\t${1:code}\n''}@" },
+                { "trigger": "@bb\tSJSBlock", "contents": "@{\n\t${1:code}\n''}@"},
                 { "trigger": "@bil\tSJSInLine", "contents": "@{${1:code}}@" },
                 { "trigger": "@form\tForm", "contents": "[[\\$Form]]\n\t${1:form}\n[[\\$EndForm]]" },
                 { "trigger": "@con\tConfig", "contents": "[[Config ds:where=\"${1:Field} ='[[${2:Parameter}]]'\" ]]" },
