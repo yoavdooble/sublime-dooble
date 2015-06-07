@@ -28,6 +28,8 @@
 
                 { "trigger": "\\$uqs\tSetQueryString", "contents": "\\$util.setQS(${1:url},${2:key},${3:value})"},
 
+                { "trigger": "\\$req\tRequired SJS", "contents": "require('/sjs/${1:FileName}.js')"},
+
                 { "trigger": "\\$dq\tDataQuery", "contents": "\\$data.query(\"SELECT ${1:TableName}.${2:Field} WHERE ID =\"+ ${3:Variable});" },
                 { "trigger": "\\$dqr\tDataQueryRow", "contents": "\\$data.queryRow(\"SELECT ${1:TableName}.* WHERE ID =\"+ ${2:Variable});" },
                 { "trigger": "\\$dql\tDataQueryList", "contents": "\\$data.queryList(\"SELECT ${1:TableName}.* WHERE Name =\"+ ${2:Variable});" },

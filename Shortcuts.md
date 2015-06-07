@@ -29,6 +29,7 @@ $sexist - checks if a Site Exists.
  Util Functions:
 
 $uqs - Sets a value to the Query String on the given url
+$req - adds an sjs that is requierd to the code. prevents from adding multiple unnecessary import statements.
 
  Data functions:
  
