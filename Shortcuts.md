@@ -61,6 +61,7 @@ $cb   - will create a Comment Block JS (can b used in any SJS block of '.js' Fil
 @con    - creates a Config statemnet.
 @if     - creates an If statemnt to use in html.
 @ifelse - creates an If statment, with an Else block in the html.
+@loop - creates a loop that itirate over the given parameters.
 @isjs   - Imports a SJS. the src can be modified if the file is out of the SJS default folder.
 @icss   - Imports a CSS. the src can be modified if the file is out of the CSS default folder (styles).
 @ijs    - Imports a JS. the src can be modified if the file is out of the JS default folder.
