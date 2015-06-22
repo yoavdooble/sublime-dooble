@@ -72,7 +72,7 @@
                 { "trigger": "@uidate\tUIDatePicker", "contents": "[[ui/datepicker  field='${1:Field}' format='${2:yyyy/MM/dd}']]" },
                 { "trigger": "@uisubmit\tUISubmit", "contents": "[[ui/submit  action='${1:save}' value='${2:שלח}' class='${3:class}']]" },
                 { "trigger": "@uihidden\tUIHidden", "contents": "[[ui/hidden field='${1:Field}' value='${2:value}']]" },
-
+                { "trigger": "@uiupload\tUIUpload", "contents": "[[ui/upload field='${1:Field}' types='${2:Type}' Folder='/userContent/${3:Folder}']]" },
 
                 { "trigger": "@deb\tDebugger", "contents": "debugger;" },
                 { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" },

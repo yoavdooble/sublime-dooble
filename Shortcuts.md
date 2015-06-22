@@ -80,6 +80,7 @@ $cb   - will create a Comment Block JS (can b used in any SJS block of '.js' Fil
 @uidate        - creates an UI element to contain DatePicker. the default format is yyyy/MM/dd
 @uisubmit      - creates an UI element to contain Submit. the default 'save' action will save the given fields to the current module Table.
 @uihidden     - creates an UI element to contain Hidden element.
+@uiupload     - creates an UI element to Upload files to the server.
 
 Miscellaneous HTML/JS:
 
