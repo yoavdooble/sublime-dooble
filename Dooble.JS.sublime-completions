@@ -3,7 +3,7 @@
 		
         "completions":
         [		
-                { "trigger": "\\$sj\tObjToJSON", "contents": "\\$server.json(${1:object})" },
+                { "trigger": "\\$sj\tObjToJSON", "contents": "JSON.stringify(${1:object})" },
                 { "trigger": "\\$sgg\tGetGlobal", "contents": "\\$server.global('${1:object}')" },
                 { "trigger": "\\$ssg\tSetGlobal", "contents": "\\$server.global('${1:global}',${2:value});" },
                 { "trigger": "\\$ssc\tSetCookie", "contents": "\\$server.cookie('${1:CookieName}',${2:value});" },
@@ -45,7 +45,7 @@
 
                 { "trigger": "\\$site\tSiteDetails", "contents": "var site = \\$data.queryRow('SELECT Sites.*');"},
                 { "trigger": "\\$tms\tThrow Mistake", "contents": "throw '${1:missed steak}';" },
-                { "trigger": "\\$tsj\tThrow JSON", "contents": "throw \\$server.json(${1:object});" },
+                { "trigger": "\\$tsj\tThrow JSON", "contents": "throw JSON.stringify(${1:object});" },
                 { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" },
 
 
