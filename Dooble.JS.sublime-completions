@@ -2,7 +2,10 @@
         "scopes" : "source, text",
 		
         "completions":
-        [		
+
+        [               
+                { "trigger": "\\$req\tRequired SJS", "contents": "require('/sjs/${1:FileName}.js')"},
+                
                 { "trigger": "\\$sj\tObjToJSON", "contents": "JSON.stringify(${1:object})" },
                 { "trigger": "\\$sgg\tGetGlobal", "contents": "\\$server.global('${1:object}')" },
                 { "trigger": "\\$ssg\tSetGlobal", "contents": "\\$server.global('${1:global}',${2:value});" },
@@ -27,8 +30,6 @@
                 { "trigger": "\\$sexist\tSiteExists", "contents": "\\$service.exists(${1:url})"},
 
                 { "trigger": "\\$uqs\tSetQueryString", "contents": "\\$util.setQS(${1:url},${2:key},${3:value})"},
-
-                { "trigger": "\\$req\tRequired SJS", "contents": "require('/sjs/${1:FileName}.js')"},
 
                 { "trigger": "\\$dq\tDataQuery", "contents": "\\$data.query(\"SELECT ${1:TableName}.${2:Field} WHERE ID =\"+ ${3:Variable});" },
                 { "trigger": "\\$dqr\tDataQueryRow", "contents": "\\$data.queryRow(\"SELECT ${1:TableName}.* WHERE ID =\"+ ${2:Variable});" },
