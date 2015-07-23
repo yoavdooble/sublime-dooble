@@ -28,7 +28,7 @@
          <key>end</key>
          <string>}@</string>
          <key>name</key>
-         <string>text.html.pp.sjs</string>
+         <string>source.js.sjs</string>
          <key>comment</key>
          <string>dooble comments</string>
          <key>patterns</key>
