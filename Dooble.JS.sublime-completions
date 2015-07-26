@@ -4,7 +4,7 @@
         "completions":
 
         [               
-                { "trigger": "\\$re\tRequired SJS", "contents": "require('/sjs/${1:FileName}.js')"},
+                { "trigger": "\\$req\tRequired SJS", "contents": "require('/sjs/${1:FileName}.js')"},
                 
                 { "trigger": "\\$sj\tObjToJSON", "contents": "JSON.stringify(${1:object})" },
                 { "trigger": "\\$sgg\tGetGlobal", "contents": "\\$server.global('${1:object}')" },
