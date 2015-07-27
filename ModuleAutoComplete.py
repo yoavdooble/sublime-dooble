@@ -11,7 +11,11 @@ class ModuleAutoCompleteCommand(sublime_plugin.EventListener):
 
 	def getDirs(self):
 		modulesList = [];
-		for x in sublime.active_window().folders():
+		folders = sublime.active_window().folders();
+		# print (folders[0].lower().endswith('sites'))
+		if folders[0].lower().endswith('sites'):
+			folders = get_immediate_subdirectories(self,folders[0])
+		for x in folders:
 			fullPath = x+self.MODULES_ROOT;
 			for dir in os.listdir(fullPath):
 				if '.' not in dir:
@@ -20,8 +24,8 @@ class ModuleAutoCompleteCommand(sublime_plugin.EventListener):
 						if '.' not in mPath:
 							modulesList.append([mPath,mPath]);
 		return modulesList;
-
-	def on_new_async(self, view_id):
-		print(view_id);
+def get_immediate_subdirectories(self, a_dir):
+    return [a_dir+'\\'+name for name in os.listdir(a_dir)
+            if os.path.isdir(os.path.join(a_dir, name))]
 	
 		
