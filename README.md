@@ -14,3 +14,4 @@ also, for the first time you add this to your sublime, you need to go to Prefere
 a list containing all the current shortcuts, with a short explanation about the functions,can be found here:
 
 https://github.com/doobleweb/sublime-dooble/blob/master/Shortcuts.md
+(open on raw)
