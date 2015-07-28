@@ -1,0 +1,39 @@
+{ 
+        "scopes" : "text.html.pp",
+		
+        "completions":
+
+        [               
+
+                { "trigger": "@bb\tSJSBlock", "contents": "@{\n\t${1:code}\n''}@"},
+                { "trigger": "@bil\tSJSInLine", "contents": "@{${1:code}}@" },
+                { "trigger": "@form\tForm", "contents": "[[\\$Form]]\n\t${1:form}\n[[\\$EndForm]]" },
+                { "trigger": "@con\tConfig", "contents": "[[Config ds:where=\"${1:Field} ='[[${2:Parameter}]]'\" ]]" },
+                { "trigger": "@if\tBEIf", "contents": "@if(${1:Expression})\n\t${2:code}\n@endif" },
+                { "trigger": "@ifelse\tBEIfElse", "contents": "@if(${1:Expression})\n\t${2:code}\n@else\n\t${3:code}\n@endif" },
+                { "trigger": "@loop\tBEForLoop", "contents": "@loop(var ${1:i} = 0;${1:i}<${2:array.length};${1:i}++)\n\t${3:code}\n@endloop" },
+                { "trigger": "@isjs\tImportSJS", "contents": "[[\\$SJS src='/SJS/${1:FileName}.js']]" },
+                { "trigger": "@icss\tImportCSS", "contents": "[[\\$css src='/Content/Styles/${1:FileName}.js']]" },
+                { "trigger": "@ijs\tImportJS", "contents": "[[\\$script src='/content/js/${1:FileName}.js']]" },
+                { "trigger": "@rc\tRowCount", "contents": "[[\\$RowCount]]" },
+                { "trigger": "@rn\tRowNumber", "contents": "[[\\$RowNumber]]" },
+                { "trigger": "@gd\tGetDate", "contents": "[[\\$GetDate]]" },
+                { "trigger": "@block\tAddTextBlock", "contents": "[[Blocks.Text ds:where='ID = ${1:BlockID}']]" },
+
+                { "trigger": "@uitext\tUIText", "contents": "[[ui/text field='${1:Field}' class='${2:class}']]" },
+                { "trigger": "@uitextarea\tUITextArea", "contents": "[[ui/textarea field='${1:Field}' class='${2:class}']]" },
+                { "trigger": "@uicheck\tUICheckBox", "contents": "<label>[[ui/checkbox field='${1:Field}' class='${2:class}']] ${3:Name} </label>" },
+                { "trigger": "@uicomboselect\tUIComboFromSelect", "contents": "[[ui/combo ds:select='${1:TableName}' field='${2:Field}' emptyText='${3:בחר}']]" },
+                { "trigger": "@uicombovalue\tUIComboFromValue", "contents": "[[ui/combo  field='${1:Field}' values='${2:value1},${3:value2},${4:value3}']]" },
+                { "trigger": "@uidate\tUIDatePicker", "contents": "[[ui/datepicker  field='${1:Field}' format='${2:yyyy/MM/dd}']]" },
+                { "trigger": "@uisubmit\tUISubmit", "contents": "[[ui/submit  action='${1:save}' value='${2:שלח}' class='${3:class}']]" },
+                { "trigger": "@uihidden\tUIHidden", "contents": "[[ui/hidden field='${1:Field}' value='${2:value}']]" },
+                { "trigger": "@uiupload\tUIUpload", "contents": "[[ui/upload field='${1:Field}' types='${2:Type}' Folder='/userContent/${3:Folder}']]" },
+
+                { "trigger": "@deb\tDebugger", "contents": "debugger;" },
+                { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" },
+                { "trigger": "@cll\tConsoleLogItem", "contents": "console.log(${1:object},${1:object});" },
+                { "trigger": "@cb\tCommentBlockHTML", "contents": "--[\n\t${1:Comment}\n]--" }
+        ]
+
+}
