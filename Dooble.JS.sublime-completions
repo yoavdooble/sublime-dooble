@@ -1,5 +1,5 @@
 { 
-        "scopes" : "source, text",
+        "scopes" : "source.js",
 		
         "completions":
 
@@ -47,43 +47,7 @@
                 { "trigger": "\\$site\tSiteDetails", "contents": "var site = \\$data.queryRow('SELECT Sites.*');"},
                 { "trigger": "\\$tms\tThrow Mistake", "contents": "throw '${1:missed steak}';" },
                 { "trigger": "\\$tsj\tThrow JSON", "contents": "throw JSON.stringify(${1:object});" },
-                { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" },
-
-
-                { "trigger": "@bb\tSJSBlock", "contents": "@{\n\t${1:code}\n''}@"},
-                { "trigger": "@bil\tSJSInLine", "contents": "@{${1:code}}@" },
-                { "trigger": "@form\tForm", "contents": "[[\\$Form]]\n\t${1:form}\n[[\\$EndForm]]" },
-                { "trigger": "@con\tConfig", "contents": "[[Config ds:where=\"${1:Field} ='[[${2:Parameter}]]'\" ]]" },
-                { "trigger": "@if\tBEIf", "contents": "@if(${1:Expression})\n\t${2:code}\n@endif" },
-                { "trigger": "@ifelse\tBEIfElse", "contents": "@if(${1:Expression})\n\t${2:code}\n@else\n\t${3:code}\n@endif" },
-                { "trigger": "@loop\tBEForLoop", "contents": "@loop(var ${1:i} = 0;${1:i}<${2:array.length};${1:i}++)\n\t${3:code}\n@endloop" },
-                { "trigger": "@isjs\tImportSJS", "contents": "[[\\$SJS src='/SJS/${1:FileName}.js']]" },
-                { "trigger": "@icss\tImportCSS", "contents": "[[\\$css src='/Content/Styles/${1:FileName}.js']]" },
-                { "trigger": "@ijs\tImportJS", "contents": "[[\\$script src='/content/js/${1:FileName}.js']]" },
-                { "trigger": "@rc\tRowCount", "contents": "[[\\$RowCount]]" },
-                { "trigger": "@rn\tRowNumber", "contents": "[[\\$RowNumber]]" },
-                { "trigger": "@gd\tGetDate", "contents": "[[\\$GetDate]]" },
-                { "trigger": "@block\tAddTextBlock", "contents": "[[Blocks.Text ds:where='ID = ${1:BlockID}']]" },
-
-                { "trigger": "@uitext\tUIText", "contents": "[[ui/text field='${1:Field}' class='${2:class}']]" },
-                { "trigger": "@uitextarea\tUITextArea", "contents": "[[ui/textarea field='${1:Field}' class='${2:class}']]" },
-                { "trigger": "@uicheck\tUICheckBox", "contents": "<label>[[ui/checkbox field='${1:Field}' class='${2:class}']] ${3:Name} </label>" },
-                { "trigger": "@uicomboselect\tUIComboFromSelect", "contents": "[[ui/combo ds:select='${1:TableName}' field='${2:Field}' emptyText='${3:בחר}']]" },
-                { "trigger": "@uicombovalue\tUIComboFromValue", "contents": "[[ui/combo  field='${1:Field}' values='${2:value1},${3:value2},${4:value3}']]" },
-                { "trigger": "@uidate\tUIDatePicker", "contents": "[[ui/datepicker  field='${1:Field}' format='${2:yyyy/MM/dd}']]" },
-                { "trigger": "@uisubmit\tUISubmit", "contents": "[[ui/submit  action='${1:save}' value='${2:שלח}' class='${3:class}']]" },
-                { "trigger": "@uihidden\tUIHidden", "contents": "[[ui/hidden field='${1:Field}' value='${2:value}']]" },
-                { "trigger": "@uiupload\tUIUpload", "contents": "[[ui/upload field='${1:Field}' types='${2:Type}' Folder='/userContent/${3:Folder}']]" },
-
-                { "trigger": "@deb\tDebugger", "contents": "debugger;" },
-                { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" },
-                { "trigger": "@cb\tCommentBlockHTML", "contents": "--[\n\t${1:Comment}\n]--" },
-
-
-                { "trigger": "#apiform\tAPIForm", "contents": "@{\n\trequire('/sjs/${1:name}Handler.js')\n\n\tvar result = { success: true, exception: null };\n\ttry {\n\t\t\tvar qs ={\n\t\t\t\taction: \\$server.qs('action')\n\t\t\t};\n\t\tif(!qs.action)\n\t\t\tthrow 'action required.';\n\t\tqs.action = qs.action.toLowerCase();\n\t\tvar form = (\\$server.requestBody()) ?  JSON.parse(\\$server.requestBody()) : {};\n\n\t\tswitch(qs.action) {\n\t\t\tcase 'action':\n\t\t\t\tcode;\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\tthrow 'WRONG_ACTION'\n\t\t}\n\t} catch(e) {\n\t\tresult.success = false;\n\t\tresult.exception = e.toString();\n\t}\n\t\\$server.responseType('application/json');\n\t\\$server.json(result);\n}@" },
-                { "trigger": "#handler\tHandlerJSON", "contents": "var ${1:name}Handler = {\n\t${2:get}: function () {\n\t\t${3:return false;}\n\t},\n\t${4:set}: function () {\n\t\t${5:return true;}\n\t}\n};" },
-                { "trigger": "#sql\tSQLBuilder", "contents": "var query = {\n\t\tpagerHead: \"DECLARE @RowsPerPage INT = PerPage, @PageNumber INT = \"+page,\n\t\tbase: [\n\t\t\t\"SELECT %s FROM TableName t \\n\\\n\t\t\t %s \\n\\\n\t\t\t WHERE %s \\n\\ \",\n\t\t\t\"ORDER BY %s \\n \\\n\t\t\t %s\"],\n\t\tselect: [\n\t\t\t\"t.ID\",\n\t\t\t\"t.Field as FieldName\"\n\t\t\t],\n\t\torderby: [\"ID\"],\n\t\tjoins: [\n\t\t\t\"INNER JOIN TableName t2 ON t2.ID = t.ID\"\n\t\t\t],\n\t\twhere: [\n\t\t\t\"Field = Field\",\n\t\t\t\"Field = Field\"\n\t\t\t],\n\t\tpagerFooter: \"OFFSET (@PageNumber-1)*@RowsPerPage ROWS FETCH NEXT @RowsPerPage ROWS ONLY\"\n\t};\n\nvar variableName = \\$data.sqlList(_.str.sprintf(query.base.join(\" \\n \"),query.select.join(\",\"),query.joins.join(\" \\n \"),query.where.join(\" AND \"), query.orderby.join(\",\")));\n" }
-                
+                { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" }
         ]
 
 }
