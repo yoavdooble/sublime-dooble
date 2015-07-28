@@ -24,13 +24,48 @@
          </dict>
          <dict>
             <key>begin</key>
-            <string>\[\[</string>
+            <string>(\()</string>
             <key>end</key>
-            <string>\]\]</string>
+            <string>\)</string>
+            <key>name</key>
+            <string>text.html.pp.conditions</string>
+            <key>patterns</key>
+            <array>
+               <dict>
+                  <key>include</key>
+                  <string>source.js</string>
+               </dict>
+            </array>
+            <key>comment</key>
+            <string>Dooble Loop</string>
+         </dict>
+         <dict>
+            <key>match</key>
+            <string>(@if|@else|@elseif|@endif|@loop|@endloop)</string>
+            <key>name</key>
+            <string>entity.other.inherited-class</string>
+            <key>comment</key>
+            <string>Dooble Saved Words Loops</string>
+         </dict>
+
+         <dict>
+            <key>begin</key>
+            <string>(\[\[)</string>
+            <key>end</key>
+            <string>(\]\])</string>
             <key>name</key>
             <string>text.html.pp.module</string>
             <key>comment</key>
             <string>Dooble Module Call</string>
+            <key>patterns</key>
+            <array>
+               <dict>
+                  <key>match</key>
+                  <string>(^(.*?([a-zA-Z\\]+.*?)){1})</string>
+                  <key>name</key>
+                  <string>entity.name.function</string>
+               </dict>
+            </array>
          </dict>
          <dict>
             <key>begin</key>
