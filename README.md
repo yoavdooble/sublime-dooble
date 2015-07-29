@@ -9,7 +9,21 @@ if you don't know where the packages folder is, in Sublime, go to Preferences ->
 also, for the first time you add this to your sublime, you need to go to Preferences -> Settings - User and add the following lines at the beginning of the json:
 
 	"word_separators": "./\\()\"'-:,.;<>~!%^*|+=[]{}`~?",
-	"auto_complete_selector": "source, text",
+		"auto_complete_triggers":
+	[
+		{
+			"characters": "#",
+			"selector": "text, source"
+		},
+		{
+			"characters": "@",
+			"selector": "text.html"
+		},
+		{
+			"characters": "\\$",
+			"selector": "source.js"
+		}
+	],
 	
 a list containing all the current shortcuts, with a short explanation about the functions,can be found here:
 
