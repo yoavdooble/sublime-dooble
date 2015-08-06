@@ -68,7 +68,8 @@ $cb   - will create a Comment Block JS (can b used in any SJS block of '.js' Fil
 @rc     - will return the Row Count of the current module.
 @rn     - will return the Row Number of the current module. to be used inside an item file.
 @gd     - Get the current Date.
-@block - dds a text Block.
+@block - adds a text Block.
+@temp - adds a Template module.
 
  Form Elements:
 
