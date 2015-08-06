@@ -19,6 +19,7 @@
                 { "trigger": "@rn\tRowNumber", "contents": "[[\\$RowNumber]]" },
                 { "trigger": "@gd\tGetDate", "contents": "[[\\$GetDate]]" },
                 { "trigger": "@block\tAddTextBlock", "contents": "[[Blocks.Text ds:where='ID = ${1:BlockID}']]" },
+                { "trigger": "@temp\tAddTemplate", "contents": "[[template t:file='/content/${1:ModuleName}']]" },
 
                 { "trigger": "@uitext\tUIText", "contents": "[[ui/text field='${1:Field}' class='${2:class}']]" },
                 { "trigger": "@uitextarea\tUITextArea", "contents": "[[ui/textarea field='${1:Field}' class='${2:class}']]" },
