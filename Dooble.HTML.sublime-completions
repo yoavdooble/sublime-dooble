@@ -33,7 +33,7 @@
                 { "trigger": "@deb\tDebugger", "contents": "debugger;" },
                 { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" },
                 { "trigger": "@cll\tConsoleLogItem", "contents": "console.log(${1:object},${1:object});" },
-                { "trigger": "@cb\tCommentBlockHTML", "contents": "--[\n\t${1:Comment}\n]--" }
+                { "trigger": "@cb\tCommentBlock", "contents": "--[\n\t${1:Comment}\n]--" }
         ]
 
 }
