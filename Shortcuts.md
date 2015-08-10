@@ -71,6 +71,7 @@ $cb   - will create a Comment Block JS (can b used in any SJS block of '.js' Fil
 @block  - adds a text Block.
 @temp   - adds a Template module.
 @res    - adds a Resource module.
+@rep    - adds a Regex Replace.
 
  Form Elements:
 
