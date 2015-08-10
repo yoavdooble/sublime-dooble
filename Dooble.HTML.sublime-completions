@@ -1,6 +1,6 @@
 { 
         "scopes" : "text.html.pp",
-		
+                
         "completions":
 
         [               
@@ -13,13 +13,14 @@
                 { "trigger": "@ifelse\tBEIfElse", "contents": "@if(${1:Expression})\n\t${2:code}\n@else\n\t${3:code}\n@endif" },
                 { "trigger": "@loop\tBEForLoop", "contents": "@loop(var ${1:i} = 0;${1:i}<${2:array.length};${1:i}++)\n\t${3:code}\n@endloop" },
                 { "trigger": "@isjs\tImportSJS", "contents": "[[\\$SJS src='/SJS/${1:FileName}.js']]" },
-                { "trigger": "@icss\tImportCSS", "contents": "[[\\$css src='/Content/Styles/${1:FileName}.css']]" },
+                { "trigger": "@icss\tImportCSS", "contents": "[[\\$css src='/Content/Styles/${1:FileName}.js']]" },
                 { "trigger": "@ijs\tImportJS", "contents": "[[\\$script src='/content/js/${1:FileName}.js']]" },
                 { "trigger": "@rc\tRowCount", "contents": "[[\\$RowCount]]" },
                 { "trigger": "@rn\tRowNumber", "contents": "[[\\$RowNumber]]" },
                 { "trigger": "@gd\tGetDate", "contents": "[[\\$GetDate]]" },
                 { "trigger": "@block\tAddTextBlock", "contents": "[[Blocks.Text ds:where='ID = ${1:BlockID}']]" },
                 { "trigger": "@temp\tAddTemplate", "contents": "[[template t:file='/content/${1:ModuleName}']]" },
+                { "trigger": "@res\tAddResource", "contents": "[[\\$resource key='${1:key}' text='${2:text}']]" },
 
                 { "trigger": "@uitext\tUIText", "contents": "[[ui/text field='${1:Field}' class='${2:class}']]" },
                 { "trigger": "@uitextarea\tUITextArea", "contents": "[[ui/textarea field='${1:Field}' class='${2:class}']]" },
