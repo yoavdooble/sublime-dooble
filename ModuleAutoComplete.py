@@ -16,6 +16,8 @@ class ModuleAutoCompleteCommand(sublime_plugin.EventListener):
 		if folders[0].lower().endswith('sites'):
 			folders = get_immediate_subdirectories(self,folders[0])
 		for x in folders:
+			if x.endswith('dev'):
+				continue;
 			fullPath = x+self.MODULES_ROOT;
 			for dir in os.listdir(fullPath):
 				if '.' not in dir:

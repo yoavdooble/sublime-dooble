@@ -1,0 +1,23 @@
+[	
+	{
+		"keys": ["f8"], 
+		"command": "set_file_type",
+		"args": {
+			"syntax": "Dooble/HTML.tmLanguage"
+		}
+	},
+	{
+		"keys": ["f7"], 
+		"command": "set_file_type",
+		"args": {
+			"syntax": "Dooble/JavaScript.tmLanguage"
+		}
+	},
+	{
+		"keys": ["f9"], 
+		"command": "set_file_type",
+		"args": {
+			"syntax": "Dooble/HTMLpp.tmLanguage"
+		}
+	}
+]

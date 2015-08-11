@@ -1,0 +1,25 @@
+{
+	"extensions":
+	[
+		"html",
+		"htm",
+		"hpp",
+		"config" 
+	],
+	"auto_complete_triggers":
+	[
+		{
+			"characters": "#",
+			"selector": "text.html.pp, source.js.sjs"
+		},
+		{
+			"characters": "@",
+			"selector": "text.html.pp"
+		},
+		{
+			"characters": "\\$",
+			"selector": "source.js.sjs"
+		}
+	],
+	"word_separators": "./\\()\"'-:,.;<>~!%^*|+=[]{}`~?"
+}
