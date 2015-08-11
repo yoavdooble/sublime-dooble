@@ -25,6 +25,56 @@ class AddItemCommand(sublime_plugin.WindowCommand):
 			return False
 		if("item" in files[0].lower()):
 			return False
+
+		filePath = files[0].lower()
+		filename, file_extension = os.path.splitext(filePath)
+
+		#change file path
+		if filename.lower().endswith('master'):
+			filePath = filename.lower().replace('master','item') + file_extension
+		else:
+			filePath = filename+ '.item' + file_extension
+
+		if (os.path.isfile(filePath)):
+			return False
+
+		return True
+
+class GoToItemCommand(sublime_plugin.WindowCommand):
+	def run(self, files):
+		# get file path
+		filePath = files[0].lower()
+		filename, file_extension = os.path.splitext(filePath)
+
+		#change file path
+		if filename.lower().endswith('master'):
+			filePath = filename.lower().replace('master','item') + file_extension
+		else:
+			filePath = filename+ '.item' + file_extension
+
+		#open a new file. if exists, does nothing.
+		# open(filePath, 'a')
+
+		#goes to new file
+		sublime.active_window().open_file(filePath)
+
+	def is_visible(self,files):
+		if(len(files) > 1):
+			return False
+		if("item" in files[0].lower()):
+			return False
+
+		filePath = files[0].lower()
+		filename, file_extension = os.path.splitext(filePath)
+
+		#change file path
+		if filename.lower().endswith('master'):
+			filePath = filename.lower().replace('master','item') + file_extension
+		else:
+			filePath = filename+ '.item' + file_extension
+
+		if (not os.path.isfile(filePath)):
+			return False
 		return True
 
 class AddConfigCommand(sublime_plugin.WindowCommand):

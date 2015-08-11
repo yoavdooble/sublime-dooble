@@ -7,6 +7,13 @@
     }
   },
   {
+    "caption": "Go To Item",
+    "command": "go_to_item",
+    "args": {
+      "files": []
+    }
+  },
+  {
     "caption": "Create New Config",
     "command": "add_config",
     "args": {

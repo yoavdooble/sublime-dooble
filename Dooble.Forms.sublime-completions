@@ -1,5 +1,5 @@
 { 
-        "scopes" : "source, text",
+        "scopes" : "source.js.sjs, text.html.pp",
 		
         "completions":
 
