@@ -13,7 +13,7 @@
                 { "trigger": "@ifelse\tBEIfElse", "contents": "@if(${1:Expression})\n\t${2:code}\n@else\n\t${3:code}\n@endif" },
                 { "trigger": "@loop\tBEForLoop", "contents": "@loop(var ${1:i} = 0;${1:i}<${2:array.length};${1:i}++)\n\t${3:code}\n@endloop" },
                 { "trigger": "@isjs\tImportSJS", "contents": "[[\\$SJS src='/SJS/${1:FileName}.js']]" },
-                { "trigger": "@icss\tImportCSS", "contents": "[[\\$css src='/Content/Styles/${1:FileName}.css']]" },
+                { "trigger": "@icss\tImportCSS", "contents": "[[\\$css src='/Content/Styles/${1:FileName}.js']]" },
                 { "trigger": "@ijs\tImportJS", "contents": "[[\\$script src='/content/js/${1:FileName}.js']]" },
                 { "trigger": "@rc\tRowCount", "contents": "[[\\$RowCount]]" },
                 { "trigger": "@rn\tRowNumber", "contents": "[[\\$RowNumber]]" },
