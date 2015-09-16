@@ -27,5 +27,23 @@ also, for the first time you add this to your sublime, you need to go to Prefere
 	
 a list containing all the current shortcuts, with a short explanation about the functions,can be found here:
 
+
+for key binding, this format needs to be added the the key binding user file:
+
+to change syntex:
+
+	{
+		"keys": ["f9"], 
+		"command": "set_file_type",
+		"args": {
+			"syntax": "Dooble/HTMLpp.tmLanguage"
+		}
+	},
+
+for word wrap:
+
+	{ "keys": ["f6"], "command": "toggle_setting", "args": {"setting": "word_wrap"} },
+
+
 https://github.com/doobleweb/sublime-dooble/blob/master/Shortcuts.md
 (open on raw)

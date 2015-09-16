@@ -26,5 +26,13 @@
     "args": {
       "files": []
     }
+  },
+  {
+    "caption": "Compile",
+    "command": "babel_it",
+    "args": {
+      "files": []
+    }
   }
+  
 ]
