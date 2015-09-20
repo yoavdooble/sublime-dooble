@@ -33,6 +33,23 @@ class doobleIO():
 		return filePath
 
 	@staticmethod
+	def getMasterPath(files):
+		filePath = files[0]
+		filename, file_extension = os.path.splitext(filePath)
+
+		#change file path
+		print(filename)
+		if filename.lower().endswith('.item'):
+			filePath = filename.lower().replace('.item','') + file_extension
+		else:
+			if(filename.endswith('Item')):
+				filePath = filename.replace('Item','Master') + file_extension
+			else:
+				filePath = filename.lower().replace('item','master') + file_extension
+
+		return filePath
+
+	@staticmethod
 	def getBabelPath(files):
 		filePath = files[0] + '.js'
 
@@ -40,6 +57,8 @@ class doobleIO():
 
 class AddItemCommand(sublime_plugin.WindowCommand):
 	def run(self, files):
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
 		# get file path
 		filePath = doobleIO.getItemPath(files)
 		#open a new file. if exists, does nothing.
@@ -49,7 +68,8 @@ class AddItemCommand(sublime_plugin.WindowCommand):
 		sublime.active_window().open_file(filePath)
 
 	def is_visible(self,files):
-		
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
 		if(len(files) > 1):
 			return False
 		if("item." in files[0].lower()):
@@ -64,6 +84,8 @@ class AddItemCommand(sublime_plugin.WindowCommand):
 
 class GoToItemCommand(sublime_plugin.WindowCommand):
 	def run(self, files):
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
 		# get file path
 		filePath = doobleIO.getItemPath(files)
 
@@ -71,6 +93,8 @@ class GoToItemCommand(sublime_plugin.WindowCommand):
 		sublime.active_window().open_file(filePath)
 
 	def is_visible(self,files):
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
 		if(len(files) > 1):
 			return False
 		if("item." in files[0].lower()):
@@ -82,8 +106,36 @@ class GoToItemCommand(sublime_plugin.WindowCommand):
 			return False
 		return True
 
-class AddConfigCommand(sublime_plugin.WindowCommand):
+class GoToMasterCommand(sublime_plugin.WindowCommand):
 	def run(self, files):
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
+		# get file path
+		filePath = doobleIO.getMasterPath(files)
+
+		#goes to new file
+		sublime.active_window().open_file(filePath)
+
+	def is_visible(self,files):
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
+
+		if(len(files) > 1):
+			return False
+
+		# filePath = doobleIO.getItemPath(files)
+		if (not os.path.isfile(files[0])):
+			return False
+
+		if("item." in files[0].lower()):
+			return True
+		return False
+
+class AddConfigCommand(sublime_plugin.WindowCommand):
+
+	def run(self, files):
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
 		#gets the file path
 		filePath = doobleIO.getConfigPath(files)
 
@@ -98,7 +150,10 @@ class AddConfigCommand(sublime_plugin.WindowCommand):
 
 
 	def is_visible(self,files):
-		
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
+
+		# file = 
 		if(len(files) > 1):
 			return False
 		if("config" in files[0].lower()) :
@@ -111,13 +166,16 @@ class AddConfigCommand(sublime_plugin.WindowCommand):
 
 class GoToConfigCommand(sublime_plugin.WindowCommand):
 	def run(self, files):
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
 
 		filePath = doobleIO.getConfigPath(files)
 		sublime.active_window().open_file(filePath)
 
 
 	def is_visible(self,files):
-		
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
 		if(len(files) > 1):
 			return False
 
@@ -130,31 +188,31 @@ class GoToConfigCommand(sublime_plugin.WindowCommand):
 
 		return True
 
-class BabelIt(sublime_plugin.WindowCommand):
+# class BabelIt(sublime_plugin.WindowCommand):
 
-	def run(self, files):
-		import subprocess
-		try:
-			newFile = subprocess.check_output("babel "+files[0],shell=True)
+# 	def run(self, files):
+# 		import subprocess
+# 		try:
+# 			newFile = subprocess.check_output("babel "+files[0],shell=True)
 
-			# print(files[0])
-			filePath = doobleIO.getBabelPath(files)
+# 			# print(files[0])
+# 			filePath = doobleIO.getBabelPath(files)
 
-			jsFile = open(filePath, 'w')
-			jsFile.write(newFile.decode(encoding='UTF-8'))
-			jsFile.close()
-			sublime.active_window().open_file(filePath)
-			print('TransCompiled Successfully.')
-		except:
-			print("babel "+files[0])
-			sublime.error_message("There's something wrong with your code.")
-		# sublime.active_window().open_file(filePath)
+# 			jsFile = open(filePath, 'w')
+# 			jsFile.write(newFile.decode(encoding='UTF-8'))
+# 			jsFile.close()
+# 			sublime.active_window().open_file(filePath)
+# 			print('TransCompiled Successfully.')
+# 		except:
+# 			print("babel "+files[0])
+# 			sublime.error_message("There's something wrong with your code.")
+# 		# sublime.active_window().open_file(filePath)
 
-	def is_visible(self,files):
-		if(".bbl" in files[0].lower()) : 
-			return True
-		else:
-			return False
+# 	def is_visible(self,files):
+# 		if(".bbl" in files[0].lower()) : 
+# 			return True
+# 		else:
+# 			return False
 
 # class CheckFile():
 # 	def run(files):
