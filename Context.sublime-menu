@@ -17,6 +17,13 @@
         }
       },
       {
+        "caption": "Go To Master",
+        "command": "go_to_master",
+        "args": {
+          "files": []
+        }
+      },
+      {
         "caption": "Create New Config",
         "command": "add_config",
         "args": {
@@ -26,13 +33,6 @@
       {
         "caption": "Go To Config",
         "command": "go_to_config",
-        "args": {
-          "files": []
-        }
-      },
-      {
-        "caption": "Compile",
-        "command": "babel_it",
         "args": {
           "files": []
         }
