@@ -5,7 +5,7 @@ author - sahar zehavi
 
 To add the Dooble Package to  Sublime,you first need to add a new repository to your package manager.
 To do so, while in sublime, open the Command Palette. To open the palette, press ctrl+shift+p (Win, Linux) or cmd+shift+p (OS X). there, you should type "Add Repoitory" and then paste this link: "https://github.com/doobleweb/sublime-dooble".
-after that, open the Command Palette again and type "Install Package". next you should search for this package (named "sublime-dooble") and press enter. you should now restart your sublime, and enjoy.
+after that, open the Command Palette again and type "Install Package". next you should search for this package (named "sublime-dooble") and press enter. you shoudld now restart your sublime, and enjoy.
 
 After the package is install you can always check for upgrades by typeing "upgrade package" on the Command Pallette.
 	
