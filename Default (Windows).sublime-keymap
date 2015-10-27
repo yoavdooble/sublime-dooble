@@ -1,4 +1,7 @@
 [
+	{ 
+        "keys": ["f10"], "command": "go_to_module"
+    	},
 	{ "keys": ["-"], "command": "insert_snippet", "args": {"contents": "-$0-"}, "context":
 		[
 			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
