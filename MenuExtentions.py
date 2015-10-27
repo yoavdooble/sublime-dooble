@@ -3,7 +3,7 @@ import re
 import os
 #TODO: concentrate filepath in same class
 #TODO: why check ftp permissions fall sometimes
-class doobleIO():
+class DoobleIO():
 	@staticmethod
 	def getConfigPath(files):
 		filePath = files[0].lower()
@@ -131,7 +131,7 @@ class AddItemCommand(sublime_plugin.WindowCommand):
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
 		# get file path
-		filePath = doobleIO.getItemPath(files)
+		filePath = DoobleIO.getItemPath(files)
 		#open a new file. if exists, does nothing.
 		open(filePath, 'a')
 
@@ -146,7 +146,7 @@ class AddItemCommand(sublime_plugin.WindowCommand):
 		if("item." in files[0].lower()):
 			return False
 
-		filePath = doobleIO.getItemPath(files)
+		filePath = DoobleIO.getItemPath(files)
 
 		if (os.path.isfile(filePath)):
 			return False
@@ -158,7 +158,7 @@ class GoToItemCommand(sublime_plugin.WindowCommand):
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
 		# get file path
-		filePath = doobleIO.getItemPath(files)
+		filePath = DoobleIO.getItemPath(files)
 
 		#goes to new file
 		sublime.active_window().open_file(filePath)
@@ -171,7 +171,7 @@ class GoToItemCommand(sublime_plugin.WindowCommand):
 		if("item." in files[0].lower()):
 			return False
 
-		filePath = doobleIO.getItemPath(files)
+		filePath = DoobleIO.getItemPath(files)
 
 		if (not os.path.isfile(filePath)):
 			return False
@@ -182,7 +182,7 @@ class GoToMasterCommand(sublime_plugin.WindowCommand):
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
 		# get file path
-		filePath = doobleIO.getMasterPath(files)
+		filePath = DoobleIO.getMasterPath(files)
 
 		#goes to new file
 		sublime.active_window().open_file(filePath)
@@ -194,7 +194,7 @@ class GoToMasterCommand(sublime_plugin.WindowCommand):
 		if(len(files) > 1):
 			return False
 
-		# filePath = doobleIO.getItemPath(files)
+		# filePath = DoobleIO.getItemPath(files)
 		if (not os.path.isfile(files[0])):
 			return False
 
@@ -208,7 +208,7 @@ class AddConfigCommand(sublime_plugin.WindowCommand):
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
 		#gets the file path
-		filePath = doobleIO.getConfigPath(files)
+		filePath = DoobleIO.getConfigPath(files)
 
 		folder = os.path.dirname(filePath)
 		if not os.path.exists(folder):
@@ -230,7 +230,7 @@ class AddConfigCommand(sublime_plugin.WindowCommand):
 		if("config" in files[0].lower()) :
 			return False
 
-		filePath = doobleIO.getConfigPath(files)
+		filePath = DoobleIO.getConfigPath(files)
 		if (os.path.isfile(filePath)):
 			return False
 		return True
@@ -240,7 +240,7 @@ class GoToConfigCommand(sublime_plugin.WindowCommand):
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
 
-		filePath = doobleIO.getConfigPath(files)
+		filePath = DoobleIO.getConfigPath(files)
 		sublime.active_window().open_file(filePath)
 
 
@@ -253,7 +253,7 @@ class GoToConfigCommand(sublime_plugin.WindowCommand):
 		if("config" in files[0].lower()) :
 			return False		
 		
-		filePath = doobleIO.getConfigPath(files)
+		filePath = DoobleIO.getConfigPath(files)
 		if (not os.path.isfile(filePath)):
 			return False
 
@@ -441,7 +441,7 @@ class GoToModuleCommand(sublime_plugin.WindowCommand):
 # 			newFile = subprocess.check_output("babel "+files[0],shell=True)
 
 # 			# print(files[0])
-# 			filePath = doobleIO.getBabelPath(files)
+# 			filePath = DoobleIO.getBabelPath(files)
 
 # 			jsFile = open(filePath, 'w')
 # 			jsFile.write(newFile.decode(encoding='UTF-8'))
@@ -461,5 +461,3 @@ class GoToModuleCommand(sublime_plugin.WindowCommand):
 
 # class CheckFile():
 # 	def run(files):
-
-		
