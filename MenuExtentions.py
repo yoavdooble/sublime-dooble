@@ -1,4 +1,5 @@
 import sublime, sublime_plugin
+import re
 import os
 #TODO: concentrate filepath in same class
 #TODO: why check ftp permissions fall sometimes
