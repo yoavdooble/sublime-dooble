@@ -46,7 +46,7 @@
 
                 { "trigger": "\\$site\tSiteDetails", "contents": "var site = \\$data.queryRow('SELECT Sites.*');"},
                 { "trigger": "\\$tms\tThrow Mistake", "contents": "throw new Error('${1:missed steak}');" },
-                { "trigger": "\\$tsj\tThrow JSON", "contents": "throw new Error(JSON.stringify(${1:object}));" },
+                { "trigger": "\\$tsj\tThrow JSON", "contents": "throw new Error(JSON.stringify(${1:object} , null , '\\t'));" },
                 { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" }
         ]
 
