@@ -93,6 +93,8 @@ class DoobleIO():
 				# add the name of site
 				root += lis[i] + '\\' 
 				break
+			if 'site' in root:
+				break
 			root += lis[i] + '\\'
 		root += const_path + result
 		return root
@@ -382,12 +384,16 @@ class GoToModuleCommand(sublime_plugin.WindowCommand):
 		for item in list_of_files:
 			# this split create two parts: one with the root path
 			# and the other with name of site and so on
-		  file_format = item.lower().split('sites\\')
-		  if len(file_format) == 2:
+		  if 'sites' in item.lower():
+		  	file_format = item.lower().split('sites\\')
 		  	# get the name of site and module name
-		      view_list.append(file_format[1])
+		  	view_list.append(file_format[1])
+		  elif 'site' in item.lower():
+		  	file_format = item.lower().split('site\\')
+		  	# get the name of site and module name
+		  	view_list.append('site\\' + file_format[1])
 		  else:
-		      view_list.append("This is NOT site")
+		  	view_list.append("This is NOT site")
 
 		return view_list
 
