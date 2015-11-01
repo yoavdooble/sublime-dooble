@@ -59,6 +59,7 @@ class DoobleIO():
 	#---------------------------------------------------------------------------------------------------------------
 	@staticmethod
 	def get_master_path(file_name, result):
+		left_path, file_name = DoobleIO.cut_path(file_name)
 		if DoobleIO.is_ui_controls(result):
 			const_path = "master"
 			result = DoobleIO.ui_format(result)
@@ -74,10 +75,12 @@ class DoobleIO():
 				break
 			root += i + '\\'
 		root += const_path + result
-		return root
+		# print(left_path + root)
+		return left_path + root
 
 	@staticmethod
 	def get_site_path(file_name, result):
+		left_path, file_name = DoobleIO.cut_path(file_name)
 		if DoobleIO.is_ui_controls(result):
 			const_path = ""
 			result = DoobleIO.ui_format(result)
@@ -97,11 +100,13 @@ class DoobleIO():
 				break
 			root += lis[i] + '\\'
 		root += const_path + result
-		return root
+		# print(left_path + root)
+		return left_path + root
 
 
 	@staticmethod
 	def is_admin(file_name):
+		lis = file_name.split("\\")
 		if 'admin' in file_name:
 			return True
 		return False
@@ -127,6 +132,22 @@ class DoobleIO():
 					return True
 			root += lis[i] + '\\'
 		return False
+
+	@staticmethod
+	def cut_path(file_name):
+		lis = []
+		left_path = ""
+		right_path = ""
+		if 'sites' in file_name:
+			lis = file_name.split('sites')
+			left_path = lis[0]
+			right_path = 'sites\\' + lis[1]
+		elif 'site' in file_name:
+			lis = file_name.split('site')
+			left_path = lis[0]
+			right_path = 'site\\' + lis[1]
+
+		return(left_path, right_path)
 
 class AddItemCommand(sublime_plugin.WindowCommand):
 	def run(self, files):
@@ -437,6 +458,10 @@ class GoToModuleCommand(sublime_plugin.WindowCommand):
 				folder_list.append(folder)
 
 		return folder_list
+
+
+	
+
 
 
 # class BabelIt(sublime_plugin.WindowCommand):
