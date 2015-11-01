@@ -2,6 +2,10 @@
   {
     "caption": "Dooble",
     "children": [
+      { 
+        "caption": "Go To Module",
+        "command": "go_to_module"
+      },
       {
         "caption": "Create New Item",
         "command": "add_item",
