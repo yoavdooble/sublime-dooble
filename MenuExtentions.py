@@ -75,7 +75,7 @@ class DoobleIO():
 				break
 			root += i + '\\'
 		root += const_path + result
-		# print(left_path + root)
+		print(left_path + root)
 		return left_path + root
 
 	@staticmethod
@@ -100,7 +100,7 @@ class DoobleIO():
 				break
 			root += lis[i] + '\\'
 		root += const_path + result
-		# print(left_path + root)
+		print(left_path + root)
 		return left_path + root
 
 
@@ -141,11 +141,12 @@ class DoobleIO():
 		if 'sites' in file_name:
 			lis = file_name.split('sites')
 			left_path = lis[0]
-			right_path = 'sites\\' + lis[1]
+			print('sites' + lis[1])
+			right_path = 'sites' + lis[1]
 		elif 'site' in file_name:
 			lis = file_name.split('site')
 			left_path = lis[0]
-			right_path = 'site\\' + lis[1]
+			right_path = 'site' + lis[1]
 
 		return(left_path, right_path)
 
@@ -305,19 +306,22 @@ class GoToModuleCommand(sublime_plugin.WindowCommand):
 				panel_list = self.quick_panel_list(list_of_files)
 				# open the quick panel
 				self.window.show_quick_panel(panel_list, self.on_done, sublime.MONOSPACE_FONT)
+		else:
+			sublime.error_message("File not found")
 
 			
 	def on_done(self, result):
 		self.window.open_file(list_of_files[result])	
 
 
-	def is_visible(self):
-		# start the program
-		result = self.start()
-		if result:
-			return True
-		return False
-		# sublime.status_message("File not found")
+	# def is_visible(self):
+	# 	# start the program
+	# 	result = self.start()
+	# 	if result:
+	# 		return True
+	# 	sublime.error_message("File not found")
+	# 	return False
+		
 
 	def is_file(self, path):
 		fixed_path = ""
