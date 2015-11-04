@@ -34,7 +34,7 @@
 
                 { "trigger": "@deb\tDebugger", "contents": "debugger;" },
                 { "trigger": "@cl\tConsoleLog", "contents": "console.log(${1:object});" },
-                { "trigger": "@cll\tConsoleLogItem", "contents": "console.log(${1:object},${1:object});" },
+                { "trigger": "@cll\tConsoleLogItem", "contents": "console.log('${1:object}',${1:object});" },
                 { "trigger": "@cb\tCommentBlock", "contents": "--[\n\t${1:Comment}\n]--" },
                 { "trigger": "@qe\tQuery", "contents": "[[\\$query sql='SELECT ${1:Field1} FROM ${2:TableName} WHERE ${3:condition}']]" }
         ]
