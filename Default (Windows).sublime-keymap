@@ -1,5 +1,14 @@
 [
 	{ 
-        "keys": ["f10"], "command": "go_to_module"
-    	}
+        "keys": ["ctrl+keypad4"], "command": "go_to_module"
+    },
+    {
+    	"keys": ["ctrl+keypad7"], "command": "go_to_item", "args": {"files": []}
+    },
+    {
+    	"keys": ["ctrl+keypad8"], "command": "go_to_master", "args": {"files": []}
+    },
+    {
+        "keys": ["ctrl+keypad9"], "command": "go_to_config", "args": {"files": [], "paths": []}
+    }
 ]
