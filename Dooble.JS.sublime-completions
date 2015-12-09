@@ -47,7 +47,7 @@
 
                 { "trigger": "\\$site\tSiteDetails", "contents": "\\$data.queryRow('SELECT Sites.*');"},
                 { "trigger": "\\$tms\tThrow Mistake", "contents": "throw new Error('${1:missed steak}');" },
-                { "trigger": "\\$tsj\tThrow JSON", "contents": "throw new Error(JSON.stringify(${1:object}));" },
+                { "trigger": "\\$tsj\tThrow JSON", "contents": "throw new Error('${1:object}:\\n'+JSON.stringify(${1:object}, null, '\\t'));" },
                 { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" },
                 { "trigger": "\\$rg\tRegister", "contents": "\\$server.registerBlock(${1:'Name'}, function () {\n\t${2:var current = \\$data.current();}\n\n\treturn '';\n})" }
                                                                                         
