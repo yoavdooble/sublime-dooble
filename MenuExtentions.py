@@ -24,6 +24,13 @@ class DoobleIO():
 		filename, file_extension = os.path.splitext(filePath)
 
 		#change file path
+		# print("file name: " + filename)
+		# print("file extension: " + file_extension)
+		# if '.config' in file_extension:
+		# 	config_file = filename.lower().replace("\\config", '')
+		# 	print("config file: " + config_file)
+		# 	# now we check what extension we need for the file
+		# 	filePath = DoobleIO.get_html_extension(config_file)
 		if filename.lower().endswith('master'):
 			if(filename.endswith('Master')):
 				filePath = filename.replace('Master','Item') + file_extension
@@ -40,8 +47,15 @@ class DoobleIO():
 		filename, file_extension = os.path.splitext(filePath)
 
 		#change file path
-		print(filename)
-		if filename.lower().endswith('.item'):
+		print("file name: " + filename)
+		print("file extension: " + file_extension)
+		if '.config' in file_extension:
+			config_file = filename.lower().replace("\\config", '')
+			print("config file: " + config_file)
+			# now we check what extension we need for the file
+			filePath = DoobleIO.get_html_extension(config_file)
+
+		elif filename.lower().endswith('.item'):
 			filePath = filename.lower().replace('.item','') + file_extension
 		else:
 			if(filename.endswith('Item')):
@@ -157,95 +171,247 @@ class DoobleIO():
 			return True
 		return False
 
+	@staticmethod
+	def is_config_file(path):
+		return '.config' in path
+
+	@staticmethod
+	def is_item_file(path):
+		return 'item.' in path
+	
+	@staticmethod
+	def get_html_extension(file_name):
+		if os.path.isfile(file_name + ".html"):
+			filePath = file_name + ".html"
+		elif os.path.isfile(file_name + ".htm"):
+			filePath = file_name + ".htm"
+		else:
+			filePath = ""
+		return filePath
+
 
 class AddItemCommand(sublime_plugin.WindowCommand):
 	def run(self, files=[], paths=[]):
+		# in case we dont have files, get the open files from the window
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
-		# get file path
+		# get file path in item format
 		filePath = DoobleIO.getItemPath(files)
-		#open a new file. if exists, does nothing.
+		# open a new file. if exists, does nothing.
 		open(filePath, 'a')
-
-		#goes to new file
+		# goes to new file
 		sublime.active_window().open_file(filePath)
 
 	def is_visible(self, files=[], paths=[]):
+		return self.add_item_check(files, paths)
+		# # check if it's folder
+		# if len(paths) == 1:
+		# 	# get single folder for checking
+		# 	path = paths[0]
+		# 	if DoobleIO.is_folder(path):
+		# 		return False
+
+		# # in case we have multiple files selection
+		# if len(files) > 1:
+		# 	return False
+
+		# # in case we dont have files, get the open files from the window 
+		# if not files:
+		# 	files.append(sublime.active_window().active_view().file_name())
+
+		# # get single file for checking
+		# file_path = files[0].lower()
+
+		# # check item\config case
+		# if DoobleIO.is_item_file(file_path) or \
+		#    DoobleIO.is_config_file(file_path):
+		# 	return False
+
+		# # get file path in item format
+		# filePath = DoobleIO.getItemPath(files)
+		# # check if the file Path is existing file
+		# if os.path.isfile(filePath):
+		# 	return False
+		# return True
+
+	def is_enabled(self, files=[], paths=[]):
+		return self.add_item_check(files, paths)
+
+	def add_item_check(self, files=[], paths=[]):
 		# check if it's folder
 		if len(paths) == 1:
-			if DoobleIO.is_folder(paths[0]):
+			# get single folder for checking
+			path = paths[0]
+			if DoobleIO.is_folder(path):
 				return False
+
+		# in case we have multiple files selection
+		if len(files) > 1:
+			return False
+
+		# in case we dont have files, get the open files from the window 
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
-		if(len(files) > 1):
-			return False
-		if("item." in files[0].lower()):
+
+		# get single file for checking
+		file_path = files[0].lower()
+
+		# check item\config case
+		if DoobleIO.is_item_file(file_path) or \
+		   DoobleIO.is_config_file(file_path):
 			return False
 
+		# get file path in item format
 		filePath = DoobleIO.getItemPath(files)
-
-		if (os.path.isfile(filePath)):
+		# check if the file Path is existing file
+		if os.path.isfile(filePath):
 			return False
-
 		return True
 
+	
 class GoToItemCommand(sublime_plugin.WindowCommand):
 	def run(self, files):
+		# in case we dont have files, get the open files from the window 
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
-		# get file path
-		filePath = DoobleIO.getItemPath(files)
 
-		#goes to new file
-		sublime.active_window().open_file(filePath)
+		# get single file for checking
+		file_path = files[0].lower()
+		# check if it's not item file
+		if not DoobleIO.is_item_file(file_path):
+			# get file path in item format
+			filePath = DoobleIO.getItemPath(files)
+			# goes to new file
+			sublime.active_window().open_file(filePath)
 
-	def is_visible(self,files):
+	def is_visible(self, files):
+		return self.go_to_item_check(files)
+		# # in case we have multiple files selection
+		# if len(files) > 1:
+		# 	return False
+
+		# # in case we dont have files, get the open files from the window 
+		# if not files:
+		# 	files.append(sublime.active_window().active_view().file_name())
+
+		# # get single file for checking
+		# file_path = files[0].lower()
+
+		# # check if it's item file
+		# if DoobleIO.is_item_file(file_path):
+		# 	return False
+
+		# # check if it's config file
+		# if DoobleIO.is_config_file(file_path):
+		# 	return True
+
+		# # get file path in item format
+		# filePath = DoobleIO.getItemPath(files)
+		# # check if the file Path is existing file
+		# if not os.path.isfile(filePath):
+		# 	return False
+		# return True
+
+	def is_enabled(self, files):
+		return self.go_to_item_check(files)
+
+	def go_to_item_check(self, files):
+		# in case we have multiple files selection
+		if len(files) > 1:
+			return False
+
+		# in case we dont have files, get the open files from the window 
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
-		if(len(files) > 1):
-			return False
-		if("item." in files[0].lower()):
+
+		# get single file for checking
+		file_path = files[0].lower()
+
+		# check if it's item file
+		if DoobleIO.is_item_file(file_path):
 			return False
 
+		# check if it's config file
+		if DoobleIO.is_config_file(file_path):
+			return True
+
+		# get file path in item format
 		filePath = DoobleIO.getItemPath(files)
-
-		if (not os.path.isfile(filePath)):
+		# check if the file Path is existing file
+		if not os.path.isfile(filePath):
 			return False
 		return True
 
 class GoToMasterCommand(sublime_plugin.WindowCommand):
 	def run(self, files):
+		# in case we dont have files, get the open files from the window 
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
-		# get file path
+		# get file path in master format
 		filePath = DoobleIO.getMasterPath(files)
 
-		#goes to new file
+		# goes to new file
 		sublime.active_window().open_file(filePath)
 
-	def is_visible(self,files):
+	def is_visible(self, files):
+		return self.go_to_master_check(files)
+		# # in case we have multiple files selection
+		# if len(files) > 1:
+		# 	return False
+
+		# # in case we dont have files, get the open files from the window 
+		# if not files:
+		# 	files.append(sublime.active_window().active_view().file_name())
+
+		# # get single file for checking
+		# file_path = files[0].lower()
+
+		# # filePath = DoobleIO.getItemPath(files)
+		# # check if the file Path is existing file
+		# if not os.path.isfile(file_path):
+		# 	return False
+
+		# # check item\config case
+		# if DoobleIO.is_item_file(file_path) or \
+		#    DoobleIO.is_config_file(file_path):
+		# 	return True
+		# return False
+
+	def is_enabled(self, files):
+		return self.go_to_master_check(files)
+
+	def go_to_master_check(self, files):
+		# in case we have multiple files selection
+		if len(files) > 1:
+			return False
+
+		# in case we dont have files, get the open files from the window 
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
 
-		if(len(files) > 1):
-			return False
+		# get single file for checking
+		file_path = files[0].lower()
 
 		# filePath = DoobleIO.getItemPath(files)
-		if (not os.path.isfile(files[0])):
+		# check if the file Path is existing file
+		if not os.path.isfile(file_path):
 			return False
 
-		if("item." in files[0].lower()):
+		# check item\config case
+		if DoobleIO.is_item_file(file_path) or \
+		   DoobleIO.is_config_file(file_path):
 			return True
 		return False
 
-class AddConfigCommand(sublime_plugin.WindowCommand):
 
+class AddConfigCommand(sublime_plugin.WindowCommand):
 	def run(self, files=[], paths=[]):
 		# In case it's a folder
 		if len(paths) == 1:
-			a_dir = paths[0]
-			if DoobleIO.is_folder(a_dir):
-				file_name = a_dir + '\\$.config'
+			# get single folder for checking
+			path = paths[0]
+			if DoobleIO.is_folder(path):
+				file_name = path + '\\$.config'
 				# if os.path.isfile(file_name):
 				# 	sublime.active_window().open_file(file_name)
 				# else:
@@ -254,13 +420,15 @@ class AddConfigCommand(sublime_plugin.WindowCommand):
 				# 	sublime.active_window().open_file(file_name)
 				if not os.path.isfile(file_name):
 					open(file_name, 'a')
+					# goes to new file
 					sublime.active_window().open_file(file_name)
 				
 			
-
+		# in case we dont have files, get the open files from the window 
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
-		#get the file path
+
+		# get file path in config format
 		filePath = DoobleIO.getConfigPath(files)
 
 		folder = os.path.dirname(filePath)
@@ -274,68 +442,196 @@ class AddConfigCommand(sublime_plugin.WindowCommand):
 
 
 	def is_visible(self, files=[], paths=[]):
+		return self.add_config_check(files, paths)
+		# # In case it's a folder
+		# if len(paths) == 1:
+		# 	# get single folder for checking
+		# 	path = paths[0]
+		# 	if DoobleIO.is_folder(path):
+		# 		# check if the file Path is existing file
+		# 		if os.path.isfile(path + '\\$.config'):
+		# 			return False
+
+		# # in case we have multiple files selection
+		# if len(files) > 1:
+		# 	return False
+
+		# # in case we dont have files, get the open files from the window 
+		# if not files:
+		# 	files.append(sublime.active_window().active_view().file_name())
+
+		# # get single file for checking
+		# file_path = files[0].lower()
+		
+		# # check item\config case
+		# if DoobleIO.is_item_file(file_path) or \
+		#    DoobleIO.is_config_file(file_path):
+		# 	return False
+
+		# # get file path in config format
+		# filePath = DoobleIO.getConfigPath(files)
+		# # check if the file Path is existing file
+		# if os.path.isfile(filePath):
+		# 	return False
+		# return True
+
+
+	def is_enabled(self, files=[], paths=[]):
+		return self.add_config_check(files, paths)
+
+	def add_config_check(self, files=[], paths=[]):
 		# In case it's a folder
 		if len(paths) == 1:
-			if DoobleIO.is_folder(paths[0]):
-				if os.path.isfile(paths[0] + '\\$.config'):
+			# get single folder for checking
+			path = paths[0]
+			if DoobleIO.is_folder(path):
+				# check if the file Path is existing file
+				if os.path.isfile(path + '\\$.config'):
 					return False
-		# In case the files list is empty
-		if not files:
-			files.append(sublime.active_window().active_view().file_name())
-		# In case the user make multiply selections
-		if(len(files) > 1):
-			return False
-		
-		if("config" in files[0].lower()):
+
+		# in case we have multiple files selection
+		if len(files) > 1:
 			return False
 
+		# in case we dont have files, get the open files from the window 
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
+
+		# get single file for checking
+		file_path = files[0].lower()
+		
+		# check item\config case
+		if DoobleIO.is_item_file(file_path) or \
+		   DoobleIO.is_config_file(file_path):
+			return False
+
+		# get file path in config format
 		filePath = DoobleIO.getConfigPath(files)
-		if (os.path.isfile(filePath)):
+		# check if the file Path is existing file
+		if os.path.isfile(filePath):
 			return False
 		return True
 
 
+
 class GoToConfigCommand(sublime_plugin.WindowCommand):
 	def run(self, files=[], paths=[]):
+		# print(paths)
+		# print(files)
+		# In case it's a folder
 		if len(paths) == 1:
-			if DoobleIO.is_folder(paths[0]):
-				file_name = paths[0] + '\\$.config'
-				if (os.path.isfile(file_name)):
+			# get single folder for checking
+			path = paths[0]
+			if DoobleIO.is_folder(path):
+				file_name = path + '\\$.config'
+				# check if the file Path is existing file
+				if os.path.isfile(file_name):
 					sublime.active_window().open_file(file_name)
 
+		# in case we dont have files, get the open files from the window 
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
 
+		# get file path in config format
 		filePath = DoobleIO.getConfigPath(files)
 		sublime.active_window().open_file(filePath)
 
 
 	def is_visible(self, files=[], paths=[]):
+		return self.go_to_config_check(files, paths)
+		# # In case it's a folder
+		# if len(paths) == 1:
+		# 	# get single folder for checking
+		# 	path = paths[0]
+		# 	if DoobleIO.is_folder(path):
+		# 		# check if the file Path is existing file
+		# 		if os.path.isfile(path + '\\$.config'):
+		# 			return True
+
+		# # in case we have multiple files selection
+		# if len(files) > 1:
+		# 	return False
+
+		# # in case we dont have files, get the open files from the window 
+		# if not files:
+		# 	files.append(sublime.active_window().active_view().file_name())
+
+		# # get single file for checking
+		# file_path = files[0].lower()
+		# # check if it's config file
+		# if DoobleIO.is_config_file(file_path):
+		# 	return False		
+		
+		# # get file path in config format
+		# filePath = DoobleIO.getConfigPath(files)
+		# # check if the file Path is existing file
+		# if not os.path.isfile(filePath):
+		# 	return False
+		# return True
+
+	def is_enabled(self, files=[], paths=[]):
+		return self.go_to_config_check(files, paths)
+		# # in case we dont have files, get the open files from the window 
+		# if not files:
+		# 	files.append(sublime.active_window().active_view().file_name())
+
+		# # get single file for checking
+		# file_path = files[0].lower()
+
+		# if '$.config' in file_path:
+		# 	print('ERROR MESSAGE: can\'t go to config file if the source file is \'$.config\'')
+		# 	return False
+		# return True
+
+	def go_to_config_check(self, files=[], paths=[]):
 		# In case it's a folder
 		if len(paths) == 1:
-			if DoobleIO.is_folder(paths[0]):
-				if (os.path.isfile(paths[0] + '\\$.config')):
+			# get single folder for checking
+			path = paths[0]
+			if DoobleIO.is_folder(path):
+				# check if the file Path is existing file
+				if os.path.isfile(path + '\\$.config'):
 					return True
 
+		# in case we have multiple files selection
+		if len(files) > 1:
+			return False
+
+		# in case we dont have files, get the open files from the window 
 		if not files:
 			files.append(sublime.active_window().active_view().file_name())
-		if(len(files) > 1):
-			return False
 
-		if("config" in files[0].lower()) :
+		# get single file for checking
+		file_path = files[0].lower()
+		# check if it's config file
+		if DoobleIO.is_config_file(file_path):
 			return False		
 		
+		# get file path in config format
 		filePath = DoobleIO.getConfigPath(files)
-		if (not os.path.isfile(filePath)):
+		# check if the file Path is existing file
+		if not os.path.isfile(filePath):
 			return False
-
 		return True
-		
+
+
+	
+class CheckScopeCommand(sublime_plugin.WindowCommand):
+	def run(self):
+		# get current view
+		view = sublime.active_window().active_view()
+		# get the current cursor point
+		sel = view.sel()[0].begin()
+		# get the line with current cursor
+		get_line = view.line(sel)
+		print("Line: " + view.substr(get_line))
+		print("scope: " + view.scope_name(get_line.begin()))
+
 
 class GoToModuleCommand(sublime_plugin.WindowCommand):
 
 	# [[Module/template]] or [[Module/template attr=""]]
-	REGEX = r".*\[\[(\w+/\w+).*((.|\n)*)\]\].*"
+	REGEX = r".*\[\[(\w+[\\|/]\w+).*((.|\n)*)\]\].*"
 
 	def run(self):
 		# start the program
