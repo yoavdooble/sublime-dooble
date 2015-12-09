@@ -24,7 +24,7 @@
 
                 { "trigger": "@uitext\tUIText", "contents": "[[ui/text field='${1:Field}' class='${2:class}']]" },
                 { "trigger": "@uitextarea\tUITextArea", "contents": "[[ui/textarea field='${1:Field}' class='${2:class}']]" },
-                { "trigger": "@uicheck\tUICheckBox", "contents": "<label>[[ui/checkbox field='${1:Field}' class='${2:class}']] ${3:Name} </label>" },
+                { "trigger": "@uicheck\tUICheckBox", "contents": "[[ui/checkbox field='${1:Field}' class='${2:class}']]" },
                 { "trigger": "@uicomboselect\tUIComboFromSelect", "contents": "[[ui/combo ds:select='${1:TableName}' field='${2:Field}' emptyText='${3:בחר}']]" },
                 { "trigger": "@uicombovalue\tUIComboFromValue", "contents": "[[ui/combo  field='${1:Field}' values='${2:value1},${3:value2},${4:value3}']]" },
                 { "trigger": "@uidate\tUIDatePicker", "contents": "[[ui/datepicker  field='${1:Field}' format='${2:yyyy/MM/dd}']]" },
