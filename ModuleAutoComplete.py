@@ -10,6 +10,13 @@ class DoobleIO():
 		return False
 
 	@staticmethod
+	def is_content(file_name):
+		lis = file_name.split("\\")
+		if 'content' in file_name:
+			return True
+		return False
+
+	@staticmethod
 	def is_module(file_name):
 		lis = file_name.split("\\")
 		if 'module' in file_name:
@@ -42,12 +49,14 @@ class DoobleIO():
 	@staticmethod
 	def check_file_type(file_n):
 		left_path, file_name = DoobleIO.cut_path(file_n)
-		print("left path: " + left_path)
-		print("file name of cut: " + file_name)
+		# print("left path: " + left_path)
+		# print("file name of cut: " + file_name)
 
-		if DoobleIO.is_module(file_name):
+		a_type = ""
+
+		if DoobleIO.is_module(file_name) or DoobleIO.is_content(file_name):
 			a_type = '\\Content\\Modules'
-			print("im module file")
+			print("im module file or in content folder")
 		elif DoobleIO.is_admin(file_name):
 			a_type = '\\Admin'
 			print("im admin file")
@@ -65,8 +74,8 @@ class ModuleAutoCompleteCommand(sublime_plugin.EventListener):
 		# print(locations)
 		# print(view.scope_name(locations[0]))
 		if self.SCOPE_NAME in view.scope_name(locations[0]):
-			autocomplete_list = self.getDirs(view);
-			return autocomplete_list;
+			autocomplete_list = self.getDirs(view)
+			return autocomplete_list
 
 	def getDirs(self, view):
 		# get user selection
@@ -113,8 +122,11 @@ class ModuleAutoCompleteCommand(sublime_plugin.EventListener):
 			if '.' not in dir:
 				# \Sites\natanzon\Content\Modules\API
 				for fileName in os.listdir(fullPath+'\\'+dir):
-					mPath = dir+'/'+os.path.splitext(fileName)[0]
-					if '.' not in mPath:
+					# print("file name: " + fileName)
+					mPath = ""
+					if fileName != '$.config':
+						mPath = dir+'/'+os.path.splitext(fileName)[0]
+					if '.' not in mPath and mPath != "":
 						# print([mPath,mPath])
 						modulesList.append([mPath,mPath])
 		return modulesList
