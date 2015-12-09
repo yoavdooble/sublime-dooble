@@ -9,9 +9,9 @@
                 { "trigger": "\\$sj\tObjToJSON", "contents": "JSON.stringify(${1:object})" },
                 { "trigger": "\\$sgg\tGetGlobal", "contents": "\\$server.global('${1:object}')" },
                 { "trigger": "\\$ssg\tSetGlobal", "contents": "\\$server.global('${1:global}',${2:value});" },
-                { "trigger": "\\$ssc\tSetCookie", "contents": "\\$server.cookie('${1:CookieName}',${2:value})" },
+                { "trigger": "\\$ssc\tSetCookie", "contents": "\\$server.cookie('${1:CookieName}',${2:value});" },
                 { "trigger": "\\$sgc\tGetCookie", "contents": "\\$server.cookie('${1:CookieName}')" },
-                { "trigger": "\\$sss\tSetSession", "contents": "\\$server.session('${1:SessionName}',${2:value})" },
+                { "trigger": "\\$sss\tSetSession", "contents": "\\$server.session('${1:SessionName}',${2:value});" },
                 { "trigger": "\\$sgs\tGetSession", "contents": "\\$server.session('${1:SessionName}')" },
                 { "trigger": "\\$sq\tQueryString", "contents": "\\$server.qs('${1:QueryStringName}')" },
                 { "trigger": "\\$sp\tParameter", "contents": "\\$server.prm('${1:ParameterName}')" },
@@ -33,24 +33,25 @@
 
                 { "trigger": "\\$dq\tDataQuery", "contents": "\\$data.query(\"SELECT ${1:TableName}.${2:Field} WHERE ID =\"+ ${3:Variable});" },
                 { "trigger": "\\$dqr\tDataQueryRow", "contents": "\\$data.queryRow(\"SELECT ${1:TableName}.* WHERE ID =\"+ ${2:Variable});" },
-                { "trigger": "\\$dql\tDataQueryList", "contents": "\\$data.queryList(\"SELECT ${1:TableName}.* WHERE ${2:Name} =\"+ ${3:Variable});" },
+                { "trigger": "\\$dql\tDataQueryList", "contents": "\\$data.queryList(\"SELECT ${1:TableName}.* WHERE Name =\"+ ${2:Variable});" },
                 { "trigger": "\\$ds\tSQL", "contents": "\\$data.sql(\"SELECT ${1:Field} FROM ${2:TableName} WHERE ID =\"+ ${3:Variable});" },
                 { "trigger": "\\$dsu\tSQLUpdate", "contents": "\\$data.sql(\"UPDATE ${1:TableName} SET ${2:Field} = '${3:Value}', ${4:Field} = '${5:Value}' WHERE ID =\"+ ${6:Variable});" },
                 { "trigger": "\\$dsd\tSQLDelete", "contents": "\\$data.sql(\"DELETE ${1:TableName} WHERE ID =\"+ ${2:Variable});" },
                 { "trigger": "\\$dsi\tSQLInsert", "contents": "\\$data.sql(\"INSERT INTO ${1:TableName} (${2:Field1},${4:Field2},${6:Field3}) VALUES (\"+${3:Value1}+\",\"+${5:Value2}+\",\"+${7:Value3}+\")\");"},
+                { "trigger": "\\$reset\tSchema", "contents": "\\$data.resetSchema();" },
                 { "trigger": "\\$dsr\tSQLRow", "contents": "\\$data.sqlRow(\"SELECT * FROM ${1:TableName} WHERE ID =\"+ ${2:Variable});" },
-                { "trigger": "\\$dsl\tSQLList", "contents": "\\$data.sqlList(\"SELECT * FROM ${1:TableName} WHERE ${2:Name} =\"+ ${3:Variable});" },
+                { "trigger": "\\$dsl\tSQLList", "contents": "\\$data.sqlList(\"SELECT * FROM ${1:TableName} WHERE Name =\"+ ${2:Variable});" },
                 { "trigger": "\\$dc\tDataCurrent", "contents": "\\$data.current();"},
                 { "trigger": "\\$dcl\tDataCurrentList", "contents": "\\$data.currentList()"},
                 { "trigger": "\\$de\tDataEscape", "contents": "\\$data.safe(${1:Variable})"},
 
                 { "trigger": "\\$site\tSiteDetails", "contents": "\\$data.queryRow('SELECT Sites.*');"},
                 { "trigger": "\\$tms\tThrow Mistake", "contents": "throw new Error('${1:missed steak}');" },
- 		{ "trigger": "\\$tsj\tThrow JSON", "contents": "throw new Error('${1:object}:\\n'+JSON.stringify(${1:object}, null, '\\t'));" },
+                { "trigger": "\\$tsj\tThrow JSON", "contents": "throw new Error(JSON.stringify(${1:object}));" },
                 { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" },
-                { "trigger": "\\$rg\tRegister", "contents": "\\$server.registerBlock('${1:Name}', function () {\n\t${2:var current = \\$data.current();}\n\n\treturn '';\n})" }
+                { "trigger": "\\$rg\tRegister", "contents": "\\$server.registerBlock(${1:'Name'}, function () {\n\t${2:var current = \\$data.current();}\n\n\treturn '';\n})" }
                                                                                         
-                                                                                                
+
                                                                                                 
                                                                                                         
         ]
