@@ -2,6 +2,7 @@ import sublime, sublime_plugin
 import re
 import os
 import ntpath
+import shutil
 #TODO: concentrate filepath in same class
 #TODO: why check ftp permissions fall sometimes
 class DoobleIO():
