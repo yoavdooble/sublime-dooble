@@ -29,6 +29,13 @@
         "args": {
           "files": [], "paths": []
         }
+      },
+      {
+        "caption": "Add Duplicate File",
+        "command": "add_duplicate_file",
+        "args": {
+          "files": [], "paths": []
+        }
       }
     ]
   }
