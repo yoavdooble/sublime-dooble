@@ -188,6 +188,30 @@ class DoobleIO():
 		else:
 			filePath = ""
 		return filePath
+		
+	@staticmethod
+	def get_duplicate_file_path(file_path):
+		file_name, file_extension = os.path.splitext(file_path)
+		# add disabled to the destination file
+		return file_name + '.disabled' + file_extension
+
+		# add extension to the destination file
+		# return file_path + '.disabled'
+
+	@staticmethod
+	def get_strudel_file_path(file_path):
+		file_name, file_extension = os.path.splitext(file_path)
+		base_name = os.path.basename(file_name)
+		
+		return file_path.replace(base_name, '@' + base_name)
+		
+	@staticmethod
+	def is_duplicate_file(path):
+		return '.disabled' in path
+
+	@staticmethod
+	def is_strudel_file(path):
+		return '@' in path
 
 
 class AddItemCommand(sublime_plugin.WindowCommand):
@@ -614,7 +638,65 @@ class GoToConfigCommand(sublime_plugin.WindowCommand):
 			return False
 		return True
 
+class AddDuplicateFileCommand(sublime_plugin.WindowCommand):
+	def run(self, files=[], paths=[]):
+		# in case we dont have files, get the open files from the window 
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
 
+		# get single file for checking
+		file_path = files[0]
+		print("file path: " + file_path)
+
+		new_file_path = DoobleIO.get_duplicate_file_path(file_path)
+		print("new file path: " + new_file_path)
+
+		# only if not exist, open new file
+		open(new_file_path, 'a')
+		# copy file src to new dst
+		shutil.copyfile(file_path, new_file_path)
+		# show status bar message
+		sublime.status_message("Duplicate file was created Successfully")
+		# open the file in view
+		self.window.open_file(new_file_path)
+
+	def is_visible(self, files=[], paths=[]):
+		return self.add_duplicate_check(files, paths)
+
+	def is_enabled(self, files=[], paths=[]):
+		return self.add_duplicate_check(files, paths)
+
+	def add_duplicate_check(self, files=[], paths=[]):
+		# in case we have multiple folder selection
+		if len(paths) > 1:
+			return False
+
+		# In case it's a folder
+		if len(paths) == 1:
+			# get single folder for checking
+			path = paths[0]
+			if DoobleIO.is_folder(path):
+				return False
+
+		# in case we dont have files, get the open files from the window 
+		if not files:
+			files.append(sublime.active_window().active_view().file_name())
+
+		# in case we have multiple files selection
+		if len(files) > 1:
+			return False
+
+		if len(files) == 1:
+			path = files[0]
+			has_duplicate_file = DoobleIO.get_duplicate_file_path(path)
+			has_strudel_file = DoobleIO.get_strudel_file_path(path)
+			if DoobleIO.is_duplicate_file(path) or \
+			   os.path.isfile(has_duplicate_file) or \
+			   DoobleIO.is_strudel_file(path) or \
+			   os.path.isfile(has_strudel_file):
+				return False
+
+		return True
 	
 class CheckScopeCommand(sublime_plugin.WindowCommand):
 	def run(self):
