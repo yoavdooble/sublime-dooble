@@ -10,5 +10,8 @@
     },
     {
         "keys": ["ctrl+keypad9"], "command": "go_to_config", "args": {"files": [], "paths": []}
+    },
+    {
+        "keys": ["ctrl+keypad6"], "command": "add_duplicate_file", "args": {"files": [], "paths": []}
     }
 ]
