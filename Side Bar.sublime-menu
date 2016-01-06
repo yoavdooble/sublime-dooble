@@ -17,6 +17,13 @@
         }
       },
       {
+        "caption": "Go To Master",
+        "command": "go_to_master",
+        "args": {
+          "files": []
+        }
+      },
+      {
         "caption": "Create New Config",
         "command": "add_config",
         "args": {
