@@ -357,8 +357,8 @@ class GoToItemCommand(sublime_plugin.WindowCommand):
 			return False
 
 		# check if it's config file
-		if DoobleIO.is_config_file(file_path):
-			return True
+		# if DoobleIO.is_config_file(file_path):
+			# return True
 
 		# get file path in item format
 		filePath = DoobleIO.getItemPath(files)
@@ -424,7 +424,7 @@ class GoToMasterCommand(sublime_plugin.WindowCommand):
 
 		# check item\config case
 		if DoobleIO.is_item_file(file_path) or \
-		   DoobleIO.is_config_file(file_path):
+		   DoobleIO.is_config_file(file_path) and '$.config' not in file_path:
 			return True
 		return False
 
@@ -714,7 +714,7 @@ class CheckScopeCommand(sublime_plugin.WindowCommand):
 class GoToModuleCommand(sublime_plugin.WindowCommand):
 
 	# [[Module/template]] or [[Module/template attr=""]]
-	REGEX = r".*\[\[(\w+[\\|/]\w+).*((.|\n)*)\]\].*"
+	# REGEX = r".*\[\[(\w+[\\|/]\w+).*((.|\n)*)\]\].*"
 
 	def run(self):
 		# start the program
@@ -832,10 +832,35 @@ class GoToModuleCommand(sublime_plugin.WindowCommand):
 		return view.substr(get_line).strip()
 
 	def match_selection(self, sel):
-		print("sel: " + sel)
+		# [[Module/template]] or [[Module/template attr=""]]
+		regex1 = r".*\[\[(\w+[\\|/]\w+).*((.|\n)*)\]\].*"
+		# [[$script src="/content/js/somefile.min.js"]]
+		regex2 = r".*\[\[.+(src|t:file)\=[\'\"](.+)[\'\"]\]\].*"
+		# [[template module='PageImages' file='Sitemap']]
+		regex3 = r".*\[\[.+module\=[\'\"](\w+)[\'\"]\s+file\=[\'\"](\w+)[\'\"]\]\].*"
+		# [[ui type="text" Field="Name" class="editor_field_input_small" ]]
+		regex4 = r".*\[\[ui\s+type\=[\'\"](\w+)[\'\"].+\]\].*"
+
 		try:
 			# do match with the selected exp
-			search_result = re.match(self.REGEX, sel).group(1)
+
+			if re.match(regex1, sel):
+				# print("check regex1")
+				search_result = re.match(regex1, sel).group(1)
+			elif re.match(regex2, sel):				
+				# print("check regex2")
+				search_result = re.match(regex2, sel).group(2)
+			elif re.match(regex3, sel):
+				match = re.match(regex3, sel)
+				module = match.group(1)
+				file_name = match.group(2)
+				search_result = module + '/' + file_name
+			elif re.match(regex4, sel):
+				ui_type = re.match(regex4, sel).group(1)
+				search_result = 'ui/' + ui_type
+			else:
+				search_result = ""
+
 		except:
 			# in case the sel = None
 			print("there is no match")
