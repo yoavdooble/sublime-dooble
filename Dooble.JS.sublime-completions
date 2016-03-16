@@ -5,9 +5,9 @@
                 { "trigger": "\\$req\tRequired SJS", "contents": "require('/sjs/${1:FileName}.js')"},
                 
                 { "trigger": "\\$sj\tObjToJSON", "contents": "JSON.stringify(${1:object})" },
-                { "trigger": "\\$sg\tServer Global", "contents": "\\$server.global('${1:global}'${2:,${3:value}});" },
-                { "trigger": "\\$sc\tServer Cookie", "contents": "\\$server.cookie('${1:CookieName}'${2:,${3:value}});" },
-                { "trigger": "\\$ss\tServer Session", "contents": "\\$server.session('${1:SessionName}'${2:,${3:value}});"},
+                { "trigger": "\\$sg\tServer Global", "contents": "\\$server.global('${1:global}'${2:,${3:value}})" },
+                { "trigger": "\\$sc\tServer Cookie", "contents": "\\$server.cookie('${1:CookieName}'${2:,${3:value}})" },
+                { "trigger": "\\$ss\tServer Session", "contents": "\\$server.session('${1:SessionName}'${2:,${3:value}})"},
                 { "trigger": "\\$sq\tQueryString", "contents": "\\$server.qs('${1:QueryStringName}')" },
                 { "trigger": "\\$sp\tParameter", "contents": "\\$server.prm('${1:ParameterName}')" },
                 { "trigger": "\\$sf\tGetForm", "contents": "\\$server.form()" },
@@ -36,7 +36,7 @@
                 { "trigger": "\\$reset\tSchema", "contents": "\\$data.resetSchema();" },
                 { "trigger": "\\$dsr\tSQLRow", "contents": "\\$data.sqlRow(\"SELECT * FROM ${1:TableName} WHERE ID =\"+ ${2:Variable});" },
                 { "trigger": "\\$dsl\tSQLList", "contents": "\\$data.sqlList(\"SELECT * FROM ${1:TableName} WHERE Name =\"+ ${2:Variable});" },
-                { "trigger": "\\$dc\tDataCurrent", "contents": "\\$data.current();"},
+                { "trigger": "\\$dc\tDataCurrent", "contents": "\\$data.current()"},
                 { "trigger": "\\$dcl\tDataCurrentList", "contents": "\\$data.currentList()"},
                 { "trigger": "\\$de\tDataEscape", "contents": "\\$data.safe(${1:Variable})"},
 
