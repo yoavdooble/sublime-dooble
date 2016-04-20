@@ -18,7 +18,8 @@
                 { "trigger": "\\$surl\tGetUrl", "contents": "\\$server.url(true)"},
                 { "trigger": "\\$sdyc\tDecryptValue", "contents": "\\$server.decrypt(${1:value})"},
                 { "trigger": "\\$senc\tEncryptValue", "contents": "\\$server.encrypt (${1:value})"},
-                { "trigger": "\\$sr\tRedirect", "contents": "\\$server.redirect('${1:url}')"},                
+                { "trigger": "\\$sr\tRedirect", "contents": "\\$server.redirect('${1:url}')"},  
+                { "trigger": "\\$srt\tResponseType", "contents": "\\$server.responseType('${1:application\/json}')"}, 
 
                 { "trigger": "\\$sget\tHTTPGet", "contents": "\\$service.get(${1:url})"},
                 { "trigger": "\\$spost\tHTTPPost", "contents": "\\$service.post (${1:url}, ${2:postData}, ${3:headers})"},
