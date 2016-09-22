@@ -20,9 +20,11 @@
                 { "trigger": "@block\tAddTextBlock", "contents": "[[Blocks.Text ds:where='ID = ${1:BlockID}']]" },
                 { "trigger": "@temp\tAddTemplate", "contents": "[[template t:file='/content/${1:ModuleName}']]" },
                 { "trigger": "@res\tAddResource", "contents": "[[\\$resource key='${1:key}' text='${2:text}']]" },
+                { "trigger": "@trns\tAddTranslate", "contents": "[[\\$translate table='${1:Pages}' field='${2:name}' rowid='${3:[[id]]}' default='${4:[[name]]}']]" }, 
                 { "trigger": "@rep\tRegexReplace", "contents": ".replace(${1:/\"/g,\"”\"})" },
 
                 { "trigger": "@uitext\tUIText", "contents": "[[ui/text ${1:field}='${2:Field}' ${3:class='${4:class}'} ${5:}]]" },
+                { "trigger": "@uitrns\tUITranslator", "contents": "[[ui/translator table='${1:Pages}' rowID='[[ID]]' field='${2:Field}' class='translatorInPage' FieldClass='editor_field_input']]" },
                 { "trigger": "@uitextarea\tUITextArea", "contents": "[[ui/textarea ${1:field}='${2:Field}' ${3:class='${4:class}'} ${5:}]]" },
                 { "trigger": "@uicheck\tUICheckBox", "contents": "[[ui/checkbox ${1:field}='${2:Field}' ${3:class='${4:class}'} ${5:}]]" },
                 { "trigger": "@uicomboselect\tUIComboFromSelect", "contents": "[[ui/combo ds:select='${1:TableName}' ${2:field}='${3:Field}' emptyText='${4:Choose}' ${5:}]]" },
