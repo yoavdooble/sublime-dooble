@@ -2,7 +2,7 @@
         "scopes" : "source.js",
         "completions":
         [               
-                { "trigger": "\\$req\tRequired SJS", "contents": "require('/sjs/${1:FileName}.js')"},
+                { "trigger": "\\$req\tRequired SJS", "contents": "require('${1:/sjs/${2:FileName}.js}')"},
                 
                 { "trigger": "\\$sj\tObjToJSON", "contents": "JSON.stringify(${1:object})" },
                 { "trigger": "\\$sg\tServer Global", "contents": "\\$server.global('${1:global}'${2:,${3:value}})" },
