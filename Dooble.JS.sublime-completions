@@ -40,6 +40,7 @@
                 { "trigger": "\\$dc\tDataCurrent", "contents": "\\$data.current()"},
                 { "trigger": "\\$dcl\tDataCurrentList", "contents": "\\$data.currentList()"},
                 { "trigger": "\\$de\tDataEscape", "contents": "\\$data.safe(${1:Variable})"},
+                { "trigger": "\\$dsave\tDataSave", "contents": "\\$data._save(${1:{ ${2:someTable}: ${3:[${4:{${5:item}}}]}}})"},
 
                 { "trigger": "\\$site\tSiteDetails", "contents": "\\$server.site();"},
                 { "trigger": "\\$tms\tThrow Mistake", "contents": "throw new Error(${1:'${2:missed steak}'});" },
