@@ -46,6 +46,7 @@
                 { "trigger": "\\$tms\tThrow Mistake", "contents": "throw new Error(${1:'${2:missed steak}'});" },
                 { "trigger": "\\$tsj\tThrow JSON", "contents": "throw new Error('${1:object}:\\n'+JSON.stringify(${1:object}, null, '&#8195;'));" },
                 { "trigger": "\\$cb\tCommentBlockJS", "contents": "/* \n\t${1:Comment}\n*/" },
-                { "trigger": "\\$rg\tRegister", "contents": "\\$server.registerBlock(${1:'Name'}, function () {\n\t${2:var current = \\$data.current();}\n\n\treturn '';\n})" }                                                                                    
+                { "trigger": "\\$rg\tRegister", "contents": "\\$server.registerBlock(${1:'Name'}, function () {\n\t${2:var current = \\$data.current();}\n\n\treturn '';\n})" },
+                 { "trigger": "\\$ds\yt", "contents": "\\var youtube_id = {2:Field}.replace(/^[^v]+v.(.{11}).*/,'$1').replace('https://youtu.be/','');<img src='https://img.youtube.com/vi/@{youtube_id}@/0.jpg' />;https://www.youtube.com/embed/@{youtube_id}@?wmode=transparent&rel=0&autoplay=1" },
         ]
 }
